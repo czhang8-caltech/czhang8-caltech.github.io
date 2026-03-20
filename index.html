@@ -4,157 +4,409 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chi Zhang | Caltech</title>
-  <meta name="keywords" content="Chi Zhang, Caltech, Chemistry, Computational Chemistry, Organometallic" />
-  <meta name="description" content="Chi Zhang — Ph.D. Candidate in Chemistry at Caltech, working on computational and synthetic chemistry." />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #fff;
-      --bg-alt: #f6f8fa;
-      --text: #24292e;
-      --text-muted: #6a737d;
-      --accent: #0366d6;
-      --border: #e1e4e8;
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      --font-serif: Georgia, "Times New Roman", serif;
+      --bg:#fff; --bg-alt:#f6f8fa; --text:#24292e; --text-muted:#6a737d;
+      --accent:#0366d6; --border:#e1e4e8;
+      --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+      --font-serif:Georgia,"Times New Roman",serif;
     }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0d1117; --bg-alt: #161b22; --text: #c9d1d9;
-        --text-muted: #8b949e; --accent: #58a6ff; --border: #30363d;
-      }
+    @media (prefers-color-scheme:dark) {
+      :root { --bg:#0d1117; --bg-alt:#161b22; --text:#c9d1d9; --text-muted:#8b949e; --accent:#58a6ff; --border:#30363d; }
     }
-
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font-sans); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* Layout */
-    .wrapper { display: flex; max-width: 1000px; margin: 0 auto; padding: 40px 24px; gap: 48px; }
-
-    /* Sidebar */
-    .sidebar { width: 220px; flex-shrink: 0; position: sticky; top: 40px; align-self: flex-start; text-align: center; }
-    .avatar {
-      width: 150px; height: 150px; border-radius: 50%;
-      border: 2px solid var(--border); margin-bottom: 14px;
-      background: var(--bg-alt); display: block; margin-left: auto; margin-right: auto;
-    }
-    .sidebar .name { font-family: var(--font-serif); font-size: 20px; font-weight: normal; margin-bottom: 4px; }
-    .sidebar .pos, .sidebar .aff { font-size: 13px; color: var(--text-muted); margin-bottom: 2px; }
-    .sidebar .em { font-size: 12px; color: var(--text-muted); margin: 10px 0 14px; word-break: break-all; }
-
-    .s-links { display: flex; flex-direction: column; gap: 5px; align-items: center; margin-bottom: 18px; }
-    .s-links a { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
-    .s-links a:hover { color: var(--accent); text-decoration: none; }
-    .s-links i { width: 14px; text-align: center; }
-
-    .s-nav { text-align: left; border-top: 1px solid var(--border); padding-top: 14px; }
-    .s-nav a { display: block; font-size: 14px; color: var(--text-muted); padding: 3px 0; }
-    .s-nav a:hover { color: var(--accent); text-decoration: none; }
-
-    /* Main */
-    .main { flex: 1; min-width: 0; }
-    section { margin-bottom: 40px; }
-    h2 { font-family: var(--font-serif); font-size: 22px; font-weight: normal; border-bottom: 1px solid var(--border); padding-bottom: 7px; margin-bottom: 18px; }
-    p { margin-bottom: 12px; }
-
-    /* Research list */
-    .r-list { list-style: none; padding: 0; }
-    .r-list li { padding: 3px 0 3px 18px; position: relative; font-size: 15px; }
-    .r-list li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 7px; }
-
-    /* Publications */
-    .pub-list { list-style: none; padding: 0; }
-    .pub-item { display: flex; gap: 18px; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
-    .pub-item:last-child { border-bottom: none; }
-
-    .pub-thumb {
-      width: 110px; height: 72px; flex-shrink: 0; border-radius: 4px;
-      background: var(--bg-alt); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .thumb-badge {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
-      text-transform: uppercase; padding: 4px 8px; border-radius: 3px; color: #fff;
-    }
-    .t-org  { background: #2980b9; }
-    .t-jacs { background: #c0392b; }
-    .t-acso { background: #27ae60; }
-    .t-cc   { background: #8e44ad; }
-    .t-sa   { background: #e67e22; }
-    .t-nat  { background: #2c3e50; }
-
-    .pub-body { flex: 1; min-width: 0; }
-    .pub-title { font-size: 15px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
-    .pub-authors { font-size: 13px; color: var(--text-muted); margin-bottom: 3px; line-height: 1.5; }
-    .pub-authors strong { color: var(--text); }
-    .pub-venue { font-size: 13px; font-style: italic; color: var(--text-muted); margin-bottom: 7px; }
-    .pub-venue strong { font-style: normal; color: var(--text); }
-    .pub-links { display: flex; flex-wrap: wrap; gap: 5px; }
-    .pl { font-size: 12px; padding: 2px 8px; border: 1px solid var(--border); border-radius: 3px; color: var(--accent); }
-    .pl:hover { background: var(--bg-alt); text-decoration: none; }
-    .pb { font-size: 12px; padding: 2px 8px; border-radius: 3px; background: #fff3cd; color: #856404; border: 1px solid #ffc107; font-style: italic; }
-    @media (prefers-color-scheme: dark) { .pb { background: #2d2500; color: #ffc107; border-color: #5a4000; } }
-
-    /* Education */
-    .edu-list { list-style: none; padding: 0; }
-    .edu-item { display: flex; gap: 14px; margin-bottom: 18px; }
-    .edu-logo {
-      width: 42px; height: 42px; flex-shrink: 0; border-radius: 50%;
-      background: var(--bg-alt); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 700; color: var(--text-muted); text-align: center; line-height: 1.2;
-    }
-    .edu-inst { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
-    .edu-detail { font-size: 13px; color: var(--text-muted); margin-bottom: 1px; }
-
-    /* Awards */
-    .aw-list { list-style: none; padding: 0; }
-    .aw-item { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
-    .aw-item:last-child { border-bottom: none; }
-    .aw-year { font-size: 12px; color: var(--text-muted); min-width: 38px; flex-shrink: 0; padding-top: 2px; }
-
-    /* Skills */
-    .sk-group { margin-bottom: 14px; }
-    .sk-group h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); margin-bottom: 8px; }
-    .sk-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .sk-tag { font-size: 12px; padding: 3px 10px; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; color: var(--text); }
-
-    footer { text-align: center; padding: 20px; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); }
-
-    @media (max-width: 680px) {
-      .wrapper { flex-direction: column; gap: 28px; }
-      .sidebar { width: 100%; position: static; }
-      .pub-thumb { display: none; }
-    }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--font-sans); font-size:16px; line-height:1.6; color:var(--text); background:var(--bg); }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .wrapper { display:flex; max-width:1000px; margin:0 auto; padding:40px 24px; gap:48px; }
+    .sidebar { width:220px; flex-shrink:0; position:sticky; top:40px; align-self:flex-start; text-align:center; }
+    .avatar { width:150px; height:150px; border-radius:50%; border:2px solid var(--border); margin-bottom:14px; background:var(--bg-alt); display:block; margin-left:auto; margin-right:auto; }
+    .sidebar .name { font-family:var(--font-serif); font-size:20px; font-weight:normal; margin-bottom:4px; }
+    .sidebar .pos, .sidebar .aff { font-size:13px; color:var(--text-muted); margin-bottom:2px; }
+    .sidebar .em { font-size:12px; color:var(--text-muted); margin:10px 0 14px; word-break:break-all; }
+    .s-links { display:flex; flex-direction:column; gap:5px; align-items:center; margin-bottom:18px; }
+    .s-links a { font-size:13px; color:var(--text-muted); display:flex; align-items:center; gap:6px; }
+    .s-links a:hover { color:var(--accent); text-decoration:none; }
+    .s-links i { width:14px; text-align:center; }
+    .s-nav { text-align:left; border-top:1px solid var(--border); padding-top:14px; }
+    .s-nav a { display:block; font-size:14px; color:var(--text-muted); padding:3px 0; }
+    .s-nav a:hover { color:var(--accent); text-decoration:none; }
+    .main { flex:1; min-width:0; }
+    section { margin-bottom:40px; }
+    h2 { font-family:var(--font-serif); font-size:22px; font-weight:normal; border-bottom:1px solid var(--border); padding-bottom:7px; margin-bottom:18px; }
+    p { margin-bottom:12px; }
+    .r-list { list-style:none; padding:0; }
+    .r-list li { padding:3px 0 3px 18px; position:relative; font-size:15px; }
+    .r-list li::before { content:"▸"; position:absolute; left:0; color:var(--accent); font-size:11px; top:7px; }
+    .pub-list { list-style:none; padding:0; }
+    .pub-item { display:flex; gap:18px; margin-bottom:22px; padding-bottom:22px; border-bottom:1px solid var(--border); }
+    .pub-item:last-child { border-bottom:none; }
+    .pub-thumb { width:110px; height:72px; flex-shrink:0; border-radius:4px; background:var(--bg-alt); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; }
+    .thumb-badge { font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:4px 8px; border-radius:3px; color:#fff; text-align:center; line-height:1.3; }
+    .pub-body { flex:1; min-width:0; }
+    .pub-title { font-size:15px; font-weight:600; line-height:1.4; margin-bottom:4px; }
+    .pub-authors { font-size:13px; color:var(--text-muted); margin-bottom:3px; line-height:1.5; }
+    .pub-authors strong { color:var(--text); }
+    .pub-venue { font-size:13px; font-style:italic; color:var(--text-muted); margin-bottom:7px; }
+    .pub-venue strong { font-style:normal; color:var(--text); }
+    .pub-links { display:flex; flex-wrap:wrap; gap:5px; }
+    .pl { font-size:12px; padding:2px 8px; border:1px solid var(--border); border-radius:3px; color:var(--accent); }
+    .pl:hover { background:var(--bg-alt); text-decoration:none; }
+    .pb { font-size:12px; padding:2px 8px; border-radius:3px; background:#fff3cd; color:#856404; border:1px solid #ffc107; font-style:italic; }
+    @media (prefers-color-scheme:dark) { .pb { background:#2d2500; color:#ffc107; border-color:#5a4000; } }
+    .edu-list { list-style:none; padding:0; }
+    .edu-item { display:flex; gap:14px; margin-bottom:18px; }
+    .edu-logo { width:42px; height:42px; flex-shrink:0; border-radius:50%; background:var(--bg-alt); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:var(--text-muted); text-align:center; line-height:1.2; }
+    .edu-inst { font-size:15px; font-weight:600; margin-bottom:2px; }
+    .edu-detail { font-size:13px; color:var(--text-muted); margin-bottom:1px; }
+    .aw-list { list-style:none; padding:0; }
+    .aw-item { display:flex; gap:12px; padding:6px 0; border-bottom:1px solid var(--border); font-size:14px; }
+    .aw-item:last-child { border-bottom:none; }
+    .aw-year { font-size:12px; color:var(--text-muted); min-width:38px; flex-shrink:0; padding-top:2px; }
+    .sk-group { margin-bottom:14px; }
+    .sk-group h4 { font-size:12px; text-transform:uppercase; letter-spacing:.07em; color:var(--text-muted); margin-bottom:8px; }
+    .sk-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .sk-tag { font-size:12px; padding:3px 10px; background:var(--bg-alt); border:1px solid var(--border); border-radius:12px; color:var(--text); }
+    footer { text-align:center; padding:20px; font-size:12px; color:var(--text-muted); border-top:1px solid var(--border); }
+    @media (max-width:680px) { .wrapper { flex-direction:column; gap:28px; } .sidebar { width:100%; position:static; } .pub-thumb { display:none; } }
   </style>
 </head>
 <body>
+<script>
+/* ============================================================
+   ★★★  个人信息区  ★★★
+   只需要修改这里，不用动下面的任何代码
+   ============================================================ */
+
+const ME = {
+  name:       "Chi Zhang",
+  position:   "Ph.D. Candidate",
+  affiliation:"California Institute of Technology",
+  email:      "czhang@caltech.edu",
+  photo:      "",                  // 填入照片文件名，如 "photo.jpg"；留空显示姓名首字
+  scholar:    "https://scholar.google.com",   // Google Scholar 链接
+  linkedin:   "",                  // 填入 LinkedIn 链接，如 "https://linkedin.com/in/yourname"
+  cv:         "",                  // 填入 CV 文件名，如 "CV_ChiZhang.pdf"；留空则不显示
+
+  about: `
+    I am a Ph.D. candidate in Chemistry at
+    <a href="https://www.caltech.edu" target="_blank">California Institute of Technology (Caltech)</a>,
+    working in the groups of Prof.
+    <a href="https://www.chem.ucla.edu/houk/" target="_blank">K. N. Houk</a> and Prof.
+    <a href="https://www.wag.caltech.edu" target="_blank">W. A. Goddard III</a>.
+    My research combines DFT-level computation with wet-lab synthesis to elucidate
+    catalytic mechanisms, design new catalysts, and build predictive models for
+    selectivity and reactivity.
+    <br><br>
+    Before Caltech, I earned my B.Sc. in Chemistry <em>summa cum laude</em> from
+    <a href="https://en.ustc.edu.cn" target="_blank">USTC</a>, where I received the
+    <strong>Guo Moruo Scholarship</strong> (ranked 33/1,860).
+    I also interned at Northwestern University (Marks Group), SUSTech (Liu Group),
+    and UCLA (Houk Group).
+    I serve as an ad hoc reviewer for <em>ACS Applied Materials &amp; Interfaces</em>.
+  `,
+
+  research: [
+    { bold:"Computational Mechanistic Chemistry:", text:"DFT studies of C–H activation, cross-coupling, and asymmetric catalysis" },
+    { bold:"Organometallic & Polymer Chemistry:", text:"transition-metal catalyst synthesis; sustainable polymer upcycling" },
+    { bold:"AI for Chemistry:", text:"machine learning for reaction prediction and catalyst design" },
+    { bold:"Bioinorganic Chemistry:", text:"metal complexes targeting zinc finger proteins" },
+  ],
+};
+
+/* ============================================================
+   ★★★  论文列表  ★★★
+   新增一篇 → 在最前面复制一个 { } 块，填入信息即可
+   - journal: 期刊缩写（同时决定徽章颜色，见下方颜色表）
+   - title:   论文标题
+   - authors: 作者列表，用 **Chi Zhang** 加粗自己的名字，用 † 标注共同一作
+   - venue:   完整期刊+年份，支持 HTML
+   - doi:     DOI 链接；留空则不显示 Paper 按钮
+   - status:  "published" / "under review" / "under revision"（影响徽章显示）
+   ============================================================
+
+   期刊颜色对照表（journal 值 → 颜色）：
+     JACS       → 红
+     Org        → 蓝
+     NatComm    → 深灰
+     SciAdv     → 橙
+     ACSomega   → 绿
+     ChemComm   → 紫
+     其他任意值  → 中性灰
+*/
+
+const PUBS = [
+  {
+    journal: "NatComm",
+    title:   "[Enantioselective Organocatalysis — title withheld pending revision]",
+    authors: "Kocemba, I. R.†; Basabe Obregón, E.†; **Chi Zhang†**; Kaasik, M.; Houk, K. N.; Jørgensen, K. A.",
+    venue:   "<strong>Nature Communications</strong> — under revision.",
+    doi:     "",
+    status:  "under revision",
+  },
+  {
+    journal: "JACS",
+    title:   "Engineering Enantiocomplementary Protoglobins for Stereoconvergent Construction of N-Alkylated α-Aminoketones",
+    authors: "Qin, Z.-Y.; Li, Z.-Q.; **Chi Zhang**; Heise, J. L.; Houk, K. N.; Goddard III, W. A.; Arnold, F. H.",
+    venue:   "<strong>J. Am. Chem. Soc.</strong> — under 2nd-round review.",
+    doi:     "",
+    status:  "under review",
+  },
+  {
+    journal: "SciAdv",
+    title:   "Selective Cobalt and Nickel Separation by Bioacid-Mediated Electrowinning",
+    authors: "Li, T.; **Chi Zhang**; Zhou, H.; et al.; Goddard III, W. A.; Liu, Y.",
+    venue:   "<strong>Science Advances</strong> — under 2nd-round review.",
+    doi:     "",
+    status:  "under review",
+  },
+  {
+    journal: "ChemComm",
+    title:   "The Lewis Superacidic Aluminium Cation: [(NHC)Al(C₆F₅)₂]⁺",
+    authors: "Ju, S.; **Chi Zhang**; Tang, B.; Liu, L. L.; Stephan, D. W.; Wu, Y.",
+    venue:   "<strong>Chem. Commun.</strong>, 2024, 60 (6), 698–701.",
+    doi:     "https://doi.org/10.1039/D3CC05440C",
+    status:  "published",
+  },
+  {
+    journal: "ACSomega",
+    title:   "Instantaneous Hydrolysis of Methyl Paraoxon Nerve Agent Simulant Is Catalyzed by Nontoxic Aminoguanidine Imines",
+    authors: "Darkwah, E. K.; Aryal, P.; **Chi Zhang**; Musgrave, C. B. I.; Goddard, W. A. I.; Reddy, V. P.",
+    venue:   "<strong>ACS Omega</strong>, 2025, 10 (12), 12294–12305.",
+    doi:     "https://doi.org/10.1021/acsomega.4c09946",
+    status:  "published",
+  },
+  {
+    journal: "JACS",
+    title:   "Unraveling the Dichotomy Exerted by Boron Reagents in Site-Selective Functionalization of C(sp²)– and C(sp³)–OMe Bonds",
+    authors: "Chen, P.-P.; Santiago, T. G.; Odena, C.; **Chi Zhang**; Martin, R.; Houk, K. N.",
+    venue:   "<strong>J. Am. Chem. Soc.</strong>, 2025, 147 (38), 34575–34588.",
+    doi:     "https://doi.org/10.1021/jacs.5c09306",
+    status:  "published",
+  },
+  {
+    journal: "Org",
+    title:   "A Change in C–H Activation Mechanism: Experimental and Computational Investigations of Rh-Catalyzed Disubstituted Benzene Functionalization",
+    authors: "Reid, C. W.†; **Chi Zhang†**; Baptiste, L. E.; Houk, K. N.; Goddard III, W. A.; Gunnoe, T. B.",
+    venue:   "<strong>Organometallics</strong>, 2025, 44 (21), 2579–2591.",
+    doi:     "",
+    status:  "published",
+  },
+];
+
+/* ============================================================
+   ★★★  教育 & 科研经历  ★★★
+   新增一条 → 复制一个 { } 块填入即可
+   ============================================================ */
+
+const EDUCATION = [
+  {
+    logo: "CIT",
+    inst: "California Institute of Technology",
+    lines: [
+      "Ph.D. Candidate in Chemistry · Sept. 2023 – Expected Jun. 2029",
+      "M.Sc. in Chemistry · Sept. 2023 – Jun. 2025",
+      "Advisors: Prof. K. N. Houk & Prof. W. A. Goddard III",
+    ],
+  },
+  {
+    logo: "NU",
+    inst: "Northwestern University",
+    lines: [
+      "Research Intern · Jul. 2022 – Nov. 2022",
+      "Advisors: Prof. Tobin Marks & Prof. Yosi Kratish · Polyurethane upcycling",
+    ],
+  },
+  {
+    logo: "UCLA",
+    inst: "University of California, Los Angeles",
+    lines: [
+      "Remote Research Intern · Aug. – Sept. 2023 · K. N. Houk Group",
+    ],
+  },
+  {
+    logo: "SUSTech",
+    inst: "Southern University of Science and Technology",
+    lines: [
+      "Visiting Student · Jun. – Aug. 2023 · Liu Leo Liu Group",
+    ],
+  },
+  {
+    logo: "USTC",
+    inst: "University of Science and Technology of China",
+    lines: [
+      "B.Sc. in Chemistry, <em>summa cum laude</em> · Aug. 2019 – Jun. 2023",
+      "Advisor: Prof. Hanmin Huang",
+    ],
+  },
+  {
+    logo: "NU",
+    inst: "Northwestern University",
+    lines: [
+      "Online Research Training · Jun. – Aug. 2021",
+      "Advisor: Prof. Thomas Meade · Zinc finger protein inhibitors",
+    ],
+  },
+];
+
+/* ============================================================
+   ★★★  奖项列表  ★★★
+   ============================================================ */
+
+const AWARDS = [
+  { year:"2022", text:"<strong>Guo Moruo Scholarship</strong> — highest honor for graduating students at USTC (ranked <strong>33 / 1,860</strong>)" },
+  { year:"2022", text:"Huang Minglong Scholarship — awarded by SIOC" },
+  { year:"2021", text:"<strong>National Scholarship</strong> — ranked <strong>2 / 155</strong>, top 1% nationally" },
+  { year:"2020–21", text:"Endeavour Scholarship — awarded for exceptional academic progress" },
+  { year:"—",    text:"Excellent Athlete in Undergraduates — top 3‰ in comprehensive athletics" },
+];
+
+/* ============================================================
+   ★★★  技能列表  ★★★
+   ============================================================ */
+
+const SKILLS = [
+  {
+    category: "Computation & Data Analysis",
+    tags: ["Python", "C", "Gaussian", "Multiwfn", "Chemcraft", "CCDC Package", "Origin", "MestReNova"],
+  },
+  {
+    category: "Experimental Techniques",
+    tags: ["Glovebox", "Schlenk Technique", "Cannula Transfer", "Photocatalysis", "Column Chromatography"],
+  },
+  {
+    category: "Characterization",
+    tags: ["NMR", "GC / GC-MS", "HPLC", "IR", "UV-Vis", "TGA", "ICP", "XRD"],
+  },
+];
+
+/* ============================================================
+   ★★★  服务 & 其他  ★★★
+   支持 HTML
+   ============================================================ */
+
+const SERVICES = `
+  <p><strong>Peer Review:</strong> Ad hoc reviewer for <em>ACS Applied Materials &amp; Interfaces</em>.</p>
+  <p><strong>Teaching:</strong> Teaching Assistant, General Chemistry A, USTC, Fall 2021 —
+  lectured on selected topics, organized weekly discussions, graded assignments and exams.</p>
+`;
+
+/* ============================================================
+   以下是渲染代码，不需要修改
+   ============================================================ */
+
+const JOURNAL_COLORS = {
+  JACS:     "#c0392b",
+  Org:      "#2980b9",
+  NatComm:  "#2c3e50",
+  SciAdv:   "#e67e22",
+  ACSomega: "#27ae60",
+  ChemComm: "#8e44ad",
+};
+
+function authorHTML(str) {
+  return str
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/†/g, "†");
+}
+
+function buildPage() {
+  // Sidebar
+  const avatarSrc = ME.photo
+    ? ME.photo
+    : `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150"><rect width="150" height="150" rx="75" fill="%23d0e8f8"/><text x="75" y="95" font-size="48" text-anchor="middle" fill="%232a5c8a" font-family="Georgia">${ME.name[0]}</text></svg>`;
+  document.getElementById("avatar").src = avatarSrc;
+  document.getElementById("sb-name").textContent = ME.name;
+  document.getElementById("sb-pos").textContent = ME.position;
+  document.getElementById("sb-aff").textContent = ME.affiliation;
+  document.getElementById("sb-email").textContent = ME.email.replace("@", " (at) ");
+  document.title = `${ME.name} | ${ME.affiliation.split(" ").slice(-1)[0]}`;
+
+  const links = document.getElementById("sb-links");
+  if (ME.scholar) links.innerHTML += `<a href="${ME.scholar}" target="_blank"><i class="fas fa-graduation-cap"></i>Google Scholar</a>`;
+  links.innerHTML += `<a href="mailto:${ME.email}"><i class="fas fa-envelope"></i>Email</a>`;
+  if (ME.linkedin) links.innerHTML += `<a href="${ME.linkedin}" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>`;
+  if (ME.cv) links.innerHTML += `<a href="${ME.cv}" target="_blank"><i class="fas fa-file-pdf"></i>CV</a>`;
+
+  // About
+  document.getElementById("about-text").innerHTML = ME.about;
+
+  // Research
+  const rl = document.getElementById("research-list");
+  ME.research.forEach(r => {
+    const li = document.createElement("li");
+    li.innerHTML = `<strong>${r.bold}</strong> ${r.text}`;
+    rl.appendChild(li);
+  });
+
+  // Publications
+  const pl = document.getElementById("pub-list");
+  PUBS.forEach(p => {
+    const color = JOURNAL_COLORS[p.journal] || "#888";
+    const statusHTML = p.status === "published"
+      ? (p.doi ? `<a class="pl" href="${p.doi}" target="_blank">Paper</a>` : "")
+      : `<span class="pb">${p.status === "under review" ? "Under Review" : "Under Revision"}</span>`;
+
+    pl.innerHTML += `
+      <li class="pub-item">
+        <div class="pub-thumb">
+          <span class="thumb-badge" style="background:${color}">${p.journal}</span>
+        </div>
+        <div class="pub-body">
+          <div class="pub-title">${p.title}</div>
+          <div class="pub-authors">${authorHTML(p.authors)}</div>
+          <div class="pub-venue">${p.venue}</div>
+          <div class="pub-links">${statusHTML}</div>
+        </div>
+      </li>`;
+  });
+
+  // Education
+  const el = document.getElementById("edu-list");
+  EDUCATION.forEach(e => {
+    el.innerHTML += `
+      <li class="edu-item">
+        <div class="edu-logo">${e.logo}</div>
+        <div>
+          <div class="edu-inst">${e.inst}</div>
+          ${e.lines.map((l, i) => `<div class="edu-detail" ${i === e.lines.length - 1 ? "" : ""}>${l}</div>`).join("")}
+        </div>
+      </li>`;
+  });
+
+  // Awards
+  const al = document.getElementById("award-list");
+  AWARDS.forEach(a => {
+    al.innerHTML += `<li class="aw-item"><span class="aw-year">${a.year}</span><span>${a.text}</span></li>`;
+  });
+
+  // Skills
+  const sl = document.getElementById("skill-list");
+  SKILLS.forEach(s => {
+    sl.innerHTML += `
+      <div class="sk-group">
+        <h4>${s.category}</h4>
+        <div class="sk-tags">${s.tags.map(t => `<span class="sk-tag">${t}</span>`).join("")}</div>
+      </div>`;
+  });
+
+  // Services
+  document.getElementById("services-text").innerHTML = SERVICES;
+}
+
+document.addEventListener("DOMContentLoaded", buildPage);
+</script>
+
 <div class="wrapper">
-
-  <!-- SIDEBAR -->
   <aside class="sidebar">
-    <!-- Replace src with your actual photo, e.g. src="photo.jpg" -->
-    <img class="avatar" src="Chi_profile.jpg"
-      alt="Chi Zhang"
-      onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22><rect width=%22150%22 height=%22150%22 rx=%2275%22 fill=%22%23d0e8f8%22/><text x=%2275%22 y=%2290%22 font-size=%2252%22 text-anchor=%22middle%22 fill=%22%232a5c8a%22 font-family=%22Georgia%22>张</text></svg>'" />
-
-    <div class="name">Chi Zhang</div>
-    <div class="pos">Ph.D. Candidate</div>
-    <div class="aff">California Institute of Technology</div>
-    <div class="em">czhang (at) caltech.edu</div>
-
-    <div class="s-links">
-      <a href="https://scholar.google.com" target="_blank"><i class="fas fa-graduation-cap"></i>Google Scholar</a>
-      <a href="mailto:czhang@caltech.edu"><i class="fas fa-envelope"></i>Email</a>
-      <a href="#" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
-      <!-- <a href="assets/CV_ChiZhang.pdf" target="_blank"><i class="fas fa-file-pdf"></i>CV</a> -->
-    </div>
-
+    <img id="avatar" class="avatar" alt="avatar" />
+    <div class="name" id="sb-name"></div>
+    <div class="pos" id="sb-pos"></div>
+    <div class="aff" id="sb-aff"></div>
+    <div class="em" id="sb-email"></div>
+    <div class="s-links" id="sb-links"></div>
     <nav class="s-nav">
       <a href="#about">About Me</a>
       <a href="#research">Research</a>
@@ -166,206 +418,49 @@
     </nav>
   </aside>
 
-  <!-- MAIN -->
   <main class="main">
-
     <section id="about">
       <h2>About Me</h2>
-      <p>I am a Ph.D. candidate in Chemistry at <a href="https://www.caltech.edu" target="_blank">California Institute of Technology (Caltech)</a>, working in the groups of Prof. <a href="https://www.chem.ucla.edu/houk/" target="_blank">K. N. Houk</a> and Prof. <a href="https://www.wag.caltech.edu" target="_blank">W. A. Goddard III</a>. My research combines DFT-level computation with wet-lab synthesis to elucidate catalytic mechanisms, design new catalysts, and build predictive models for selectivity and reactivity.</p>
-      <p>Before Caltech, I earned my B.Sc. in Chemistry <em>summa cum laude</em> from the <a href="https://en.ustc.edu.cn" target="_blank">University of Science and Technology of China (USTC)</a>, where I was awarded the <strong>Guo Moruo Scholarship</strong> — the highest honor for graduating students (ranked 33 out of 1,860). I have also interned at <strong>Northwestern University</strong> (Marks Group), <strong>SUSTech</strong> (Liu Group), and <strong>UCLA</strong> (Houk Group).</p>
-      <p>I serve as an ad hoc reviewer for <em>ACS Applied Materials &amp; Interfaces</em>.</p>
+      <div id="about-text"></div>
     </section>
 
     <section id="research">
       <h2>Research Interests</h2>
-      <ul class="r-list">
-        <li><strong>Computational Mechanistic Chemistry:</strong> DFT studies of C–H activation, cross-coupling, and asymmetric catalysis</li>
-        <li><strong>Organometallic &amp; Polymer Chemistry:</strong> transition-metal catalyst synthesis; sustainable polymer upcycling</li>
-        <li><strong>AI for Chemistry:</strong> machine learning for reaction prediction and catalyst design</li>
-        <li><strong>Bioinorganic Chemistry:</strong> metal complexes targeting zinc finger proteins</li>
-      </ul>
+      <ul class="r-list" id="research-list"></ul>
     </section>
 
     <section id="publications">
       <h2>Publications &amp; Preprints</h2>
-      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">† co-first author &nbsp;·&nbsp; <strong>Chi Zhang</strong> in bold</p>
-      <ul class="pub-list">
-
-        <li class="pub-item">
-          <div class="pub-thumb"><span class="thumb-badge t-org">Org.</span></div>
-          <div class="pub-body">
-            <div class="pub-title">A Change in C–H Activation Mechanism: Experimental and Computational Investigations of Rh-Catalyzed Disubstituted Benzene Functionalization</div>
-            <div class="pub-authors">Reid, C. W.†; <strong>Zhang, C.†</strong>; Baptiste, L. E.; Houk, K. N.; Goddard III, W. A.; Gunnoe, T. B.</div>
-            <div class="pub-venue"><strong>Organometallics</strong>, 2025, 44 (21), 2579–2591.</div>
-            <div class="pub-links"><a class="pl" href="#" target="_blank">Paper</a></div>
-          </div>
-        </li>
-
-        <li class="pub-item">
-          <div class="pub-thumb"><span class="thumb-badge t-jacs">JACS</span></div>
-          <div class="pub-body">
-            <div class="pub-title">Unraveling the Dichotomy Exerted by Boron Reagents in Site-Selective Functionalization of C(sp²)– and C(sp³)–OMe Bonds</div>
-            <div class="pub-authors">Chen, P.-P.; Santiago, T. G.; Odena, C.; <strong>Zhang, C.</strong>; Martin, R.; Houk, K. N.</div>
-            <div class="pub-venue"><strong>J. Am. Chem. Soc.</strong>, 2025, 147 (38), 34575–34588.</div>
-            <div class="pub-links"><a class="pl" href="https://doi.org/10.1021/jacs.5c09306" target="_blank">Paper</a></div>
-          </div>
-        </li>
-
-        <li class="pub-item">
-          <div class="pub-thumb"><span class="thumb-badge t-acso">ACS ω</span></div>
-          <div class="pub-body">
-            <div class="pub-title">Instantaneous Hydrolysis of Methyl Paraoxon Nerve Agent Simulant Is Catalyzed by Nontoxic Aminoguanidine Imines</div>
-            <div class="pub-authors">Darkwah, E. K.; Aryal, P.; <strong>Zhang, C.</strong>; Musgrave, C. B. I.; Goddard, W. A. I.; Reddy, V. P.</div>
-            <div class="pub-venue"><strong>ACS Omega</strong>, 2025, 10 (12), 12294–12305.</div>
-            <div class="pub-links"><a class="pl" href="https://doi.org/10.1021/acsomega.4c09946" target="_blank">Paper</a></div>
-          </div>
-        </li>
-
-        <li class="pub-item">
-          <div class="pub-thumb"><span class="thumb-badge t-cc">Chem.<br>Comm.</span></div>
-          <div class="pub-body">
-            <div class="pub-title">The Lewis Superacidic Aluminium Cation: [(NHC)Al(C₆F₅)₂]⁺</div>
-            <div class="pub-authors">Ju, S.; <strong>Zhang, C.</strong>; Tang, B.; Liu, L. L.; Stephan, D. W.; Wu, Y.</div>
-            <div class="pub-venue"><strong>Chem. Commun.</strong>, 2024, 60 (6), 698–701.</div>
-            <div class="pub-links"><a class="pl" href="https://doi.org/10.1039/D3CC05440C" target="_blank">Paper</a></div>
-          </div>
-        </li>
-
-        <li class="pub-item">
-          <div class="pub-thumb"><span class="thumb-badge t-sa">Sci.<br>Adv.</span></div>
-          <div class="pub-body">
-            <div class="pub-title">Selective Cobalt and Nickel Separation by Bioacid-Mediated Electrowinning</div>
-            <div class="pub-authors">Li, T.; <strong>Zhang, C.</strong>; Zhou, H.; et al.; Goddard III, W. A.; Liu, Y.</div>
-            <div class="pub-venue"><strong>Science Advances</strong> — under 2nd-round review.</div>
-            <div class="pub-links"><span class="pb">Under Review</span></div>
-          </div>
-        </li>
-
-        <li class="pub-item">
-          <div class="pub-thumb"><span class="thumb-badge t-jacs">JACS</span></div>
-          <div class="pub-body">
-            <div class="pub-title">Engineering Enantiocomplementary Protoglobins for Stereoconvergent Construction of N-Alkylated α-Aminoketones</div>
-            <div class="pub-authors">Qin, Z.-Y.; Li, Z.-Q.; <strong>Zhang, C.</strong>; Heise, J. L.; Houk, K. N.; Goddard III, W. A.; Arnold, F. H.</div>
-            <div class="pub-venue"><strong>J. Am. Chem. Soc.</strong> — under 2nd-round review.</div>
-            <div class="pub-links"><span class="pb">Under Review</span></div>
-          </div>
-        </li>
-
-        <li class="pub-item">
-          <div class="pub-thumb"><span class="thumb-badge t-nat">Nat.<br>Comm.</span></div>
-          <div class="pub-body">
-            <div class="pub-title">[Enantioselective Organocatalysis — title withheld pending revision]</div>
-            <div class="pub-authors">Kocemba, I. R.†; Basabe Obregón, E.†; <strong>Zhang, C.†</strong>; Kaasik, M.; Houk, K. N.; Jørgensen, K. A.</div>
-            <div class="pub-venue"><strong>Nature Communications</strong> — under revision.</div>
-            <div class="pub-links"><span class="pb">Under Revision</span></div>
-          </div>
-        </li>
-
-      </ul>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">† co-first author</p>
+      <ul class="pub-list" id="pub-list"></ul>
     </section>
 
     <section id="education">
       <h2>Education &amp; Research Experience</h2>
-      <ul class="edu-list">
-        <li class="edu-item">
-          <div class="edu-logo">CIT</div>
-          <div>
-            <div class="edu-inst">California Institute of Technology</div>
-            <div class="edu-detail">Ph.D. Candidate in Chemistry · Sept. 2023 – Expected Jun. 2029</div>
-            <div class="edu-detail">M.Sc. in Chemistry · Sept. 2023 – Jun. 2025</div>
-            <div class="edu-detail">Advisors: Prof. K. N. Houk &amp; Prof. W. A. Goddard III</div>
-          </div>
-        </li>
-        <li class="edu-item">
-          <div class="edu-logo">NU</div>
-          <div>
-            <div class="edu-inst">Northwestern University</div>
-            <div class="edu-detail">Research Intern · Jul. 2022 – Nov. 2022</div>
-            <div class="edu-detail">Advisors: Prof. Tobin Marks &amp; Prof. Yosi Kratish · Polyurethane upcycling</div>
-          </div>
-        </li>
-        <li class="edu-item">
-          <div class="edu-logo">UCLA</div>
-          <div>
-            <div class="edu-inst">University of California, Los Angeles</div>
-            <div class="edu-detail">Remote Research Intern · Aug. – Sept. 2023 · K. N. Houk Group</div>
-          </div>
-        </li>
-        <li class="edu-item">
-          <div class="edu-logo">SUSTech</div>
-          <div>
-            <div class="edu-inst">Southern University of Science and Technology</div>
-            <div class="edu-detail">Visiting Student · Jun. – Aug. 2023 · Liu Leo Liu Group</div>
-          </div>
-        </li>
-        <li class="edu-item">
-          <div class="edu-logo">USTC</div>
-          <div>
-            <div class="edu-inst">University of Science and Technology of China</div>
-            <div class="edu-detail">B.Sc. in Chemistry, <em>summa cum laude</em> · Aug. 2019 – Jun. 2023</div>
-            <div class="edu-detail">Advisor: Prof. Hanmin Huang</div>
-          </div>
-        </li>
-        <li class="edu-item">
-          <div class="edu-logo">NU</div>
-          <div>
-            <div class="edu-inst">Northwestern University</div>
-            <div class="edu-detail">Online Research Training · Jun. – Aug. 2021</div>
-            <div class="edu-detail">Advisor: Prof. Thomas Meade · Zinc finger protein inhibitors</div>
-          </div>
-        </li>
-      </ul>
+      <ul class="edu-list" id="edu-list"></ul>
     </section>
 
     <section id="awards">
       <h2>Selected Awards</h2>
-      <ul class="aw-list">
-        <li class="aw-item"><span class="aw-year">2022</span><span><strong>Guo Moruo Scholarship</strong> — highest honor for graduating students at USTC (ranked top <strong> 33 / 1,860</strong>)</span></li>
-        <li class="aw-item"><span class="aw-year">2022</span><span>Huang Minglong Scholarship — awarded by SIOC</span></li>
-        <li class="aw-item"><span class="aw-year">2021</span><span><strong>National Scholarship</strong> — ranked <strong>2 / 155</strong>, top 1% nationally</span></li>
-        <li class="aw-item"><span class="aw-year">2020–21</span><span>Endeavour Scholarship — awarded for exceptional academic progress</span></li>
-        <li class="aw-item"><span class="aw-year">—</span><span>Excellent Athlete in Undergraduates — top 3‰ in comprehensive athletics</span></li>
-      </ul>
+      <ul class="aw-list" id="award-list"></ul>
     </section>
 
     <section id="skills">
       <h2>Skills</h2>
-      <div class="sk-group">
-        <h4>Computation &amp; Data Analysis</h4>
-        <div class="sk-tags">
-          <span class="sk-tag">Python</span><span class="sk-tag">C</span><span class="sk-tag">Gaussian</span>
-          <span class="sk-tag">Multiwfn</span><span class="sk-tag">Chemcraft</span><span class="sk-tag">CCDC Package</span>
-          <span class="sk-tag">Origin</span><span class="sk-tag">MestReNova</span>
-        </div>
-      </div>
-      <div class="sk-group">
-        <h4>Experimental Techniques</h4>
-        <div class="sk-tags">
-          <span class="sk-tag">Glovebox</span><span class="sk-tag">Schlenk Technique</span>
-          <span class="sk-tag">Cannula Transfer</span><span class="sk-tag">Photocatalysis</span>
-          <span class="sk-tag">Column Chromatography</span>
-        </div>
-      </div>
-      <div class="sk-group">
-        <h4>Characterization</h4>
-        <div class="sk-tags">
-          <span class="sk-tag">NMR</span><span class="sk-tag">GC / GC-MS</span><span class="sk-tag">HPLC</span>
-          <span class="sk-tag">IR</span><span class="sk-tag">UV-Vis</span><span class="sk-tag">TGA</span>
-          <span class="sk-tag">ICP</span><span class="sk-tag">XRD</span>
-        </div>
-      </div>
+      <div id="skill-list"></div>
     </section>
 
     <section id="services">
       <h2>Services</h2>
-      <p><strong>Peer Review:</strong> Ad hoc reviewer for <em>ACS Applied Materials &amp; Interfaces</em>.</p>
-      <p><strong>Teaching:</strong> Teaching Assistant, General Chemistry A, USTC, Fall 2021 — lectured on selected topics, organized weekly discussions, graded assignments and exams.</p>
+      <div id="services-text"></div>
     </section>
-
   </main>
 </div>
 
 <footer>
+  <div style="margin-bottom:16px;">
+    <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=rqZ62Ag64qHPpJTkKMOXDdF3MA5vfZfPdjuMOtonGlg&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=ffffff'></script>
+  </div>
   Powered by <a href="https://github.com/yaoyao-liu/minimal-light" target="_blank">Minimal Light</a> theme.
 </footer>
 </body>
