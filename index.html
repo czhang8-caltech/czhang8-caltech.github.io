@@ -396,7 +396,13 @@ function buildPage() {
   document.getElementById("services-text").innerHTML = SERVICES;
 }
 
-document.addEventListener("DOMContentLoaded", buildPage);
+document.addEventListener("DOMContentLoaded", function() {
+  buildPage();
+  const s = document.createElement("script");
+  s.type = "text/javascript";
+  s.src = "//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=rqZ62Ag64qHPpJTkKMOXDdF3MA5vfZfPdjuMOtonGlg&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=ffffff";
+  document.getElementById("clustrmaps-container").appendChild(s);
+});
 </script>
 
 <div class="wrapper">
@@ -458,9 +464,7 @@ document.addEventListener("DOMContentLoaded", buildPage);
 </div>
 
 <footer>
-  <div style="margin-bottom:16px;">
-    <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=rqZ62Ag64qHPpJTkKMOXDdF3MA5vfZfPdjuMOtonGlg&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=ffffff'></script>
-  </div>
+  <div id="clustrmaps-container" style="margin-bottom:16px;"></div>
   Powered by <a href="https://github.com/yaoyao-liu/minimal-light" target="_blank">Minimal Light</a> theme.
 </footer>
 </body>
