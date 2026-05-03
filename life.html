@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chi Zhang · Beyond Research</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --warm: #ede5d5;
+      --brown: #3d2b1f;
+      --brown-mid: #6b4c38;
+      --brown-light: #a07858;
+      --accent: #c8622a;
+      --accent-soft: #f0d5c0;
+      --text: #2a1f16;
+      --text-muted: #8a6a54;
+      --border: rgba(61,43,31,0.12);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--brown);
+      color: var(--cream);
+      padding: 48px 6vw 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(200,98,42,0.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .header-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
+    }
+
+    .back-link {
+      font-size: 13px; color: rgba(245,240,232,0.6);
+      text-decoration: none; display: flex; align-items: center; gap: 6px;
+      transition: color 0.2s; letter-spacing: 0.04em;
+    }
+    .back-link:hover { color: var(--cream); }
+    .back-link::before { content: '←'; font-size: 15px; }
+
+    .header-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 400; line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .header-sub {
+      font-size: 13px; color: rgba(245,240,232,0.55);
+      margin-top: 6px; letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── NAV TABS ── */
+    .tab-nav {
+      background: var(--warm);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 50;
+    }
+
+    .tab-nav-inner {
+      max-width: 960px; margin: 0 auto;
+      padding: 0 6vw;
+      display: flex; gap: 0;
+    }
+
+    .tab-btn {
+      font-family: var(--font-body);
+      font-size: 13px; font-weight: 500;
+      color: var(--text-muted);
+      background: none; border: none;
+      padding: 14px 20px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      letter-spacing: 0.03em;
+    }
+
+    .tab-btn:hover { color: var(--accent); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ── MAIN ── */
+    .page { max-width: 960px; margin: 0 auto; padding: 48px 6vw 80px; }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ── SECTION LABEL ── */
+    .sec-eyebrow {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 6px;
+    }
+
+    .sec-title {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 400;
+      margin-bottom: 28px; line-height: 1.2;
+    }
+
+    /* ── SPORT CARDS ── */
+    .sport-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .sport-card {
+      background: var(--warm);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .sport-photo {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      background: var(--warm);
+    }
+
+    .sport-photo-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      background: var(--warm);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 40px;
+    }
+
+    .sport-info { padding: 16px 18px; }
+
+    .sport-name {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    .sport-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── PHOTO MASONRY ── */
+    .masonry { columns: 2; column-gap: 14px; margin-top: 20px; }
+    .masonry-item {
+      break-inside: avoid; margin-bottom: 14px;
+      border-radius: 6px; overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--warm);
+    }
+    .masonry-item img { width: 100%; display: block; }
+    .masonry-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      background: var(--warm);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-size: 13px;
+    }
+    .masonry-caption {
+      font-size: 12px; color: var(--text-muted);
+      padding: 8px 12px; background: var(--warm);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── TRAVEL MAP ── */
+    .map-wrap {
+      border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 32px;
+      box-shadow: 0 4px 20px rgba(61,43,31,0.08);
+    }
+
+    #travel-map { width: 100%; height: 480px; }
+
+    /* ── LOCATION GRID ── */
+    .region-block { margin-bottom: 32px; }
+
+    .region-title {
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px;
+      padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    }
+
+    .location-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .loc-tag {
+      font-size: 12px; padding: 4px 12px;
+      background: var(--warm); border: 1px solid var(--border);
+      border-radius: 20px; color: var(--brown-mid);
+    }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 6vw;
+      max-width: 960px; margin: 0 auto;
+      font-size: 12px; color: var(--text-muted);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    @media (max-width: 600px) {
+      .masonry { columns: 1; }
+      .sport-grid { grid-template-columns: 1fr; }
+      #travel-map { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <a class="back-link" href="index.html">Back to Research</a>
+      <h1 class="header-title">Beyond Research</h1>
+      <p class="header-sub">Chi Zhang · Life &amp; Interests</p>
+    </div>
+  </div>
+</header>
+
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <button class="tab-btn active" onclick="switchTab('sports')">🏃 Sports &amp; Hobbies</button>
+    <button class="tab-btn" onclick="switchTab('travel')">✈️ Travel</button>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- ═══ SPORTS TAB ═══ -->
+  <div id="tab-sports" class="tab-content active">
+    <div class="sec-eyebrow">Active Life</div>
+    <h2 class="sec-title">Sports &amp; Hobbies</h2>
+
+    <div class="sport-grid">
+
+      <div class="sport-card">
+        <div class="sport-photo-placeholder">🧗</div>
+        <div class="sport-info">
+          <div class="sport-name">Bouldering</div>
+          <div class="sport-desc">Indoor and outdoor. Currently projecting V6–V7. Hit my first V6 at the Post in Jan. 2026; first outdoor session in Bishop, Nov. 2025.</div>
+        </div>
+      </div>
+
+      <div class="sport-card">
+        <div class="sport-photo-placeholder">🏹</div>
+        <div class="sport-info">
+          <div class="sport-name">Archery</div>
+          <div class="sport-desc">Recurve. One of the more meditative sports — all technique, no brute force.</div>
+        </div>
+      </div>
+
+      <div class="sport-card">
+        <div class="sport-photo-placeholder">🎾</div>
+        <div class="sport-info">
+          <div class="sport-name">Tennis</div>
+          <div class="sport-desc">Recreational. Enjoy both singles and doubles, especially on Caltech's courts.</div>
+        </div>
+      </div>
+
+      <div class="sport-card">
+        <div class="sport-photo-placeholder">🏓</div>
+        <div class="sport-info">
+          <div class="sport-name">Table Tennis</div>
+          <div class="sport-desc">Grew up playing. Fast reflexes, good spin — it's basically a national sport where I'm from.</div>
+        </div>
+      </div>
+
+      <div class="sport-card">
+        <div class="sport-photo-placeholder">🥋</div>
+        <div class="sport-info">
+          <div class="sport-name">Brazilian Jiu-Jitsu</div>
+          <div class="sport-desc">White belt. Grappling and ground control — the chess of combat sports.</div>
+        </div>
+      </div>
+
+      <div class="sport-card">
+        <div class="sport-photo-placeholder">🎲</div>
+        <div class="sport-info">
+          <div class="sport-name">Board Games</div>
+          <div class="sport-desc">Strategy-heavy: Twilight Imperium, Wingspan, Agricola. Always up for a game night.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Photo gallery — fill in src when photos are ready -->
+    <div class="sec-eyebrow">Gallery</div>
+    <h3 style="font-family:var(--font-display); font-size:20px; font-weight:400; margin-bottom:4px;">Moments</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:0;">Photos coming soon — check back after the next trip to Bishop.</p>
+
+    <!-- ★★★ 照片区 ★★★
+         取消注释并填入文件名即可显示照片：
+
+    <div class="masonry">
+      <div class="masonry-item">
+        <img src="Fist_V6.png" alt="First V6" />
+        <div class="masonry-caption">First V6 ever at the Post · Jan. 2026</div>
+      </div>
+      <div class="masonry-item">
+        <img src="Fist_OutdoorBouldering_in_Bishop.png" alt="Bishop" />
+        <div class="masonry-caption">First time outdoor bouldering in Bishop · Nov. 2025</div>
+      </div>
+    </div>
+    -->
+
+  </div>
+
+  <!-- ═══ TRAVEL TAB ═══ -->
+  <div id="tab-travel" class="tab-content">
+    <div class="sec-eyebrow">Wanderings</div>
+    <h2 class="sec-title">Places I've Been</h2>
+
+    <!-- Interactive Map -->
+    <div class="map-wrap">
+      <div id="travel-map"></div>
+    </div>
+
+    <!-- Location tags by region -->
+    <div class="region-block">
+      <div class="region-title">🇺🇸 United States — California &amp; West</div>
+      <div class="location-tags">
+        <span class="loc-tag">Los Angeles</span>
+        <span class="loc-tag">Sequoia NP</span>
+        <span class="loc-tag">Joshua Tree NP</span>
+        <span class="loc-tag">San Diego</span>
+        <span class="loc-tag">Temecula</span>
+        <span class="loc-tag">Santa Barbara</span>
+        <span class="loc-tag">Las Vegas</span>
+        <span class="loc-tag">Tucson</span>
+        <span class="loc-tag">Phoenix</span>
+        <span class="loc-tag">Flagstaff</span>
+        <span class="loc-tag">Grand Canyon NP</span>
+        <span class="loc-tag">Saguaro NP</span>
+        <span class="loc-tag">Santa Fe</span>
+        <span class="loc-tag">Albuquerque</span>
+        <span class="loc-tag">White Sands NM</span>
+        <span class="loc-tag">Carlsbad Caverns NP</span>
+      </div>
+    </div>
+
+    <div class="region-block">
+      <div class="region-title">🇺🇸 United States — Midwest &amp; East</div>
+      <div class="location-tags">
+        <span class="loc-tag">Chicago</span>
+        <span class="loc-tag">Evanston</span>
+        <span class="loc-tag">Indianapolis</span>
+        <span class="loc-tag">Atlanta</span>
+        <span class="loc-tag">Savannah</span>
+        <span class="loc-tag">Boston</span>
+      </div>
+    </div>
+
+    <div class="region-block">
+      <div class="region-title">🌺 Hawaii</div>
+      <div class="location-tags">
+        <span class="loc-tag">Kona</span>
+        <span class="loc-tag">Hilo</span>
+        <span class="loc-tag">Hawaiʻi Volcanoes NP</span>
+      </div>
+    </div>
+
+    <div class="region-block">
+      <div class="region-title">🇪🇺 Europe</div>
+      <div class="location-tags">
+        <span class="loc-tag">Madrid</span>
+        <span class="loc-tag">Barcelona</span>
+        <span class="loc-tag">Paris</span>
+        <span class="loc-tag">Toulon</span>
+        <span class="loc-tag">Rome</span>
+        <span class="loc-tag">Vatican City</span>
+        <span class="loc-tag">Genoa</span>
+      </div>
+    </div>
+
+    <div class="region-block">
+      <div class="region-title">🇨🇳 China — Home &amp; Long-term</div>
+      <div class="location-tags">
+        <span class="loc-tag">Henan ★</span>
+        <span class="loc-tag">Anhui ★</span>
+        <span class="loc-tag">Jiangsu</span>
+        <span class="loc-tag">Shenzhen</span>
+      </div>
+    </div>
+
+    <div class="region-block">
+      <div class="region-title">🇨🇳 China — Travel</div>
+      <div class="location-tags">
+        <span class="loc-tag">Beijing</span>
+        <span class="loc-tag">Tianjin</span>
+        <span class="loc-tag">Shanghai</span>
+        <span class="loc-tag">Heilongjiang</span>
+        <span class="loc-tag">Liaoning</span>
+        <span class="loc-tag">Shandong</span>
+        <span class="loc-tag">Hunan</span>
+        <span class="loc-tag">Hubei</span>
+        <span class="loc-tag">Shaanxi</span>
+        <span class="loc-tag">Hebei</span>
+        <span class="loc-tag">Hong Kong</span>
+        <span class="loc-tag">Macau</span>
+        <span class="loc-tag">Taiwan</span>
+      </div>
+    </div>
+
+    <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">★ grew up / long-term residence</p>
+
+    <!-- Photo gallery placeholder -->
+    <div style="margin-top:40px;">
+      <div class="sec-eyebrow">Travel Gallery</div>
+      <h3 style="font-family:var(--font-display); font-size:20px; font-weight:400; margin-bottom:4px;">On the Road</h3>
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Add travel photos below — same format as the sports gallery.</p>
+
+      <!-- ★★★ 旅游照片区 ★★★
+           取消注释并填入文件名：
+
+      <div class="masonry">
+        <div class="masonry-item">
+          <img src="KeyWest.png" alt="Key West" />
+          <div class="masonry-caption">Key West · Southernmost Point of the Continental US · Dec. 2025</div>
+        </div>
+      </div>
+      -->
+    </div>
+
+  </div>
+</div>
+
+<footer class="page-footer">
+  <span>Chi Zhang · <a href="index.html" style="color:var(--text-muted);">Back to Research</a></span>
+  <span>Pasadena, CA</span>
+</footer>
+
+<!-- Leaflet for interactive map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+
+function switchTab(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+  if (name === 'travel' && !window._mapInit) initMap();
+}
+
+function initMap() {
+  window._mapInit = true;
+  const map = L.map('travel-map', { scrollWheelZoom: false }).setView([30, 15], 2);
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© OpenStreetMap © CARTO',
+    maxZoom: 18,
+  }).addTo(map);
+
+  const icon = L.divIcon({
+    className: '',
+    html: `<div style="width:10px;height:10px;border-radius:50%;background:#c8622a;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.3)"></div>`,
+    iconSize: [10, 10], iconAnchor: [5, 5],
+  });
+
+  const places = [
+    // USA — West
+    { name: "Los Angeles, CA",          lat: 34.052,   lng: -118.244 },
+    { name: "Sequoia National Park",     lat: 36.486,   lng: -118.565 },
+    { name: "Joshua Tree NP",            lat: 33.874,   lng: -115.900 },
+    { name: "San Diego, CA",             lat: 32.715,   lng: -117.161 },
+    { name: "Temecula, CA",              lat: 33.493,   lng: -117.148 },
+    { name: "Santa Barbara, CA",         lat: 34.420,   lng: -119.698 },
+    { name: "Las Vegas, NV",             lat: 36.175,   lng: -115.137 },
+    { name: "Tucson, AZ",                lat: 32.222,   lng: -110.926 },
+    { name: "Phoenix, AZ",               lat: 33.448,   lng: -112.074 },
+    { name: "Flagstaff, AZ",             lat: 35.198,   lng: -111.651 },
+    { name: "Grand Canyon NP",           lat: 36.107,   lng: -112.113 },
+    { name: "Saguaro NP",                lat: 32.211,   lng: -110.739 },
+    { name: "Santa Fe, NM",              lat: 35.687,   lng: -105.937 },
+    { name: "Albuquerque, NM",           lat: 35.085,   lng: -106.651 },
+    { name: "White Sands NM",            lat: 32.779,   lng: -106.327 },
+    { name: "Carlsbad Caverns NP",       lat: 32.147,   lng: -104.557 },
+    // USA — Midwest & East
+    { name: "Chicago, IL",               lat: 41.878,   lng: -87.630 },
+    { name: "Evanston, IL",              lat: 42.045,   lng: -87.688 },
+    { name: "Indianapolis, IN",          lat: 39.768,   lng: -86.158 },
+    { name: "Atlanta, GA",               lat: 33.749,   lng: -84.388 },
+    { name: "Savannah, GA",              lat: 32.083,   lng: -81.100 },
+    { name: "Boston, MA",                lat: 42.360,   lng: -71.059 },
+    // Hawaii
+    { name: "Kona, HI",                  lat: 19.639,   lng: -155.997 },
+    { name: "Hilo, HI",                  lat: 19.730,   lng: -155.090 },
+    { name: "Hawaiʻi Volcanoes NP",      lat: 19.432,   lng: -155.257 },
+    // Europe
+    { name: "Madrid",                    lat: 40.416,   lng: -3.704  },
+    { name: "Barcelona",                 lat: 41.385,   lng: 2.173   },
+    { name: "Paris",                     lat: 48.857,   lng: 2.352   },
+    { name: "Toulon",                    lat: 43.125,   lng: 5.930   },
+    { name: "Rome",                      lat: 41.902,   lng: 12.496  },
+    { name: "Vatican City",              lat: 41.903,   lng: 12.453  },
+    { name: "Genoa",                     lat: 44.407,   lng: 8.934   },
+    // China
+    { name: "Zhengzhou, Henan",          lat: 34.746,   lng: 113.625 },
+    { name: "Hefei, Anhui",              lat: 31.861,   lng: 117.283 },
+    { name: "Nanjing, Jiangsu",          lat: 32.060,   lng: 118.796 },
+    { name: "Shenzhen",                  lat: 22.543,   lng: 114.058 },
+    { name: "Beijing",                   lat: 39.905,   lng: 116.391 },
+    { name: "Tianjin",                   lat: 39.125,   lng: 117.190 },
+    { name: "Shanghai",                  lat: 31.230,   lng: 121.473 },
+    { name: "Harbin, Heilongjiang",      lat: 45.804,   lng: 126.535 },
+    { name: "Shenyang, Liaoning",        lat: 41.805,   lng: 123.431 },
+    { name: "Jinan, Shandong",           lat: 36.651,   lng: 117.120 },
+    { name: "Changsha, Hunan",           lat: 28.228,   lng: 112.939 },
+    { name: "Wuhan, Hubei",              lat: 30.593,   lng: 114.305 },
+    { name: "Xi'an, Shaanxi",            lat: 34.341,   lng: 108.940 },
+    { name: "Shijiazhuang, Hebei",       lat: 38.042,   lng: 114.515 },
+    { name: "Hong Kong",                 lat: 22.319,   lng: 114.170 },
+    { name: "Macau",                     lat: 22.199,   lng: 113.549 },
+    { name: "Taipei, Taiwan",            lat: 25.033,   lng: 121.565 },
+  ];
+
+  places.forEach(p => {
+    L.marker([p.lat, p.lng], { icon })
+      .addTo(map)
+      .bindPopup(`<strong style="font-size:13px">${p.name}</strong>`, { closeButton: false });
+  });
+}
+</script>
+</body>
+</html>
