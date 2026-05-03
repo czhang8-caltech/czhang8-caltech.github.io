@@ -9,8 +9,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --cream: #f5f0e8; --warm: #ede5d5; --brown: #3d2b1f;
-      --brown-mid: #6b4c38; --brown-light: #a07858; --accent: #c8622a;
-      --accent-soft: #f0d5c0; --text: #2a1f16; --text-muted: #8a6a54;
+      --brown-mid: #6b4c38; --accent: #c8622a;
+      --text: #2a1f16; --text-muted: #8a6a54;
       --border: rgba(61,43,31,0.12);
       --font-display: 'Playfair Display', Georgia, serif;
       --font-body: 'DM Sans', sans-serif;
@@ -197,7 +197,7 @@
         <span class="loc-tag">Miami</span>
         <span class="loc-tag">Key West</span>
         <span class="loc-tag">Orlando</span>
-        <span class="loc-tag">Coconut Beach</span>
+        <span class="loc-tag">Cocoa Beach</span>
       </div>
     </div>
 
@@ -246,6 +246,7 @@
         <span class="loc-tag">Hubei</span>
         <span class="loc-tag">Shaanxi</span>
         <span class="loc-tag">Hebei</span>
+        <span class="loc-tag">Guizhou</span>
         <span class="loc-tag">Hong Kong</span>
         <span class="loc-tag">Macau</span>
         <span class="loc-tag">Taiwan</span>
@@ -296,7 +297,10 @@ function initMap() {
 
   /* ============================================================
      ★★★ 去过的地方 ★★★
-     新增州/省/国家 → 在对应 Set 里加名字即可
+     美国州 → visitedUS（英文州名）
+     中国省 → visitedCN_zh（中文省名）
+     欧洲国 → visitedEU（英文国名）
+     新增：在对应 Set 里加名字即可
   ============================================================ */
 
   const visitedUS = new Set([
@@ -305,12 +309,14 @@ function initMap() {
     "Hawaii", "Florida"
   ]);
 
-  const visitedCN = new Set([
-    "Henan", "Anhui", "Jiangsu", "Guangdong",
-    "Heilongjiang", "Liaoning", "Shandong",
-    "Beijing", "Tianjin", "Shanghai",
-    "Hunan", "Hubei", "Shaanxi", "Hebei",
-    "Hong Kong", "Macao", "Taiwan"
+  // 中文省名，和 GeoJSON 数据源直接匹配
+  const visitedCN_zh = new Set([
+    "河南", "安徽", "江苏", "广东",
+    "黑龙江", "辽宁", "山东",
+    "北京", "天津", "上海",
+    "湖南", "湖北", "陕西", "河北",
+    "贵州",
+    "香港", "澳门", "台湾"
   ]);
 
   const visitedEU = new Set([
@@ -341,18 +347,18 @@ function initMap() {
       }).addTo(map);
     });
 
-  // 中国省
-  fetch("https://raw.githubusercontent.com/echarts-maps/echarts-china-provinces-js/master/geojson/china.geojson")
+  // 中国省份 — 使用中文名匹配
+  fetch("https://raw.githubusercontent.com/longwosion/geojson-map-china/master/china.json")
     .then(r => r.json())
     .then(data => {
       L.geoJSON(data, {
         style: f => {
-          const name = f.properties.name_en || f.properties.NAME_1 || f.properties.name || "";
-          return styleRegion(visitedCN.has(name));
+          const name = f.properties.name || "";
+          return styleRegion(visitedCN_zh.has(name));
         },
         onEachFeature: (f, layer) => {
-          const name = f.properties.name_en || f.properties.NAME_1 || f.properties.name || "";
-          const v = visitedCN.has(name);
+          const name = f.properties.name || "";
+          const v = visitedCN_zh.has(name);
           layer.bindPopup(`<strong style="font-size:13px">${name}</strong>${v ? "<br><span style='color:#c8622a;font-size:11px'>✓ visited</span>" : ""}`, { closeButton: false });
         }
       }).addTo(map);
@@ -441,6 +447,7 @@ function initMap() {
     { name: "Wuhan, Hubei",          lat: 30.593,  lng: 114.305  },
     { name: "Xi'an, Shaanxi",        lat: 34.341,  lng: 108.940  },
     { name: "Shijiazhuang, Hebei",   lat: 38.042,  lng: 114.515  },
+    { name: "Guiyang, Guizhou",      lat: 26.647,  lng: 106.630  },
     { name: "Hong Kong",             lat: 22.319,  lng: 114.170  },
     { name: "Macau",                 lat: 22.199,  lng: 113.549  },
     { name: "Taipei, Taiwan",        lat: 25.033,  lng: 121.565  },
