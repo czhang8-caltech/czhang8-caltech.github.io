@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chi Zhang | Caltech</title>
+  <link rel="icon" type="image/jpeg" href="Chi_profile.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,7 +26,6 @@
     .avatar { width:150px; height:150px; border-radius:50%; border:2px solid var(--border); margin-bottom:14px; background:var(--bg-alt); display:block; margin-left:auto; margin-right:auto; }
     .sidebar .name { font-family:var(--font-serif); font-size:20px; font-weight:normal; margin-bottom:4px; }
     .sidebar .pos, .sidebar .aff { font-size:13px; color:var(--text-muted); margin-bottom:2px; }
-    .sidebar .em { font-size:12px; color:var(--text-muted); margin:10px 0 14px; word-break:break-all; }
     .s-links { display:flex; flex-direction:column; gap:5px; align-items:center; margin-bottom:18px; }
     .s-links a { font-size:13px; color:var(--text-muted); display:flex; align-items:center; gap:6px; }
     .s-links a:hover { color:var(--accent); text-decoration:none; }
@@ -44,7 +44,7 @@
     .pub-item { display:flex; gap:18px; margin-bottom:22px; padding-bottom:22px; border-bottom:1px solid var(--border); }
     .pub-item:last-child { border-bottom:none; }
     .pub-thumb { width:110px; height:72px; flex-shrink:0; border-radius:4px; background:var(--bg-alt); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; }
-    .thumb-badge { font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:4px 8px; border-radius:3px; color:#fff; text-align:center; line-height:1.3; }
+    .thumb-badge { font-size:11px; font-weight:700; letter-spacing:.04em; padding:4px 8px; border-radius:3px; color:#fff; text-align:center; line-height:1.3; }
     .pub-body { flex:1; min-width:0; }
     .pub-title { font-size:15px; font-weight:600; line-height:1.4; margin-bottom:4px; }
     .pub-authors { font-size:13px; color:var(--text-muted); margin-bottom:3px; line-height:1.5; }
@@ -69,13 +69,6 @@
     .sk-group h4 { font-size:12px; text-transform:uppercase; letter-spacing:.07em; color:var(--text-muted); margin-bottom:8px; }
     .sk-tags { display:flex; flex-wrap:wrap; gap:6px; }
     .sk-tag { font-size:12px; padding:3px 10px; background:var(--bg-alt); border:1px solid var(--border); border-radius:12px; color:var(--text); }
-    .life-category { margin-bottom:32px; }
-    .life-category h3 { font-family:var(--font-serif); font-size:18px; font-weight:normal; margin-bottom:14px; padding-bottom:6px; border-bottom:1px solid var(--border); }
-    .masonry { columns:2; column-gap:12px; }
-    .masonry-item { break-inside:avoid; margin-bottom:12px; border-radius:6px; overflow:hidden; border:1px solid var(--border); }
-    .masonry-item img { width:100%; display:block; transition:transform 0.2s; }
-    .masonry-item:hover img { transform:scale(1.02); }
-    .masonry-caption { font-size:12px; color:var(--text-muted); padding:6px 10px; background:var(--bg-alt); }
     footer { text-align:center; padding:20px; font-size:12px; color:var(--text-muted); border-top:1px solid var(--border); }
     @media (max-width:680px) { .wrapper { flex-direction:column; gap:28px; } .sidebar { width:100%; position:static; } .pub-thumb { display:none; } }
   </style>
@@ -91,12 +84,12 @@ const ME = {
   name:       "Chi Zhang",
   position:   "Ph.D. Candidate",
   affiliation:"California Institute of Technology",
-  major: "Major in Chemistry<br>Minor in Computing + Mathematical Sciences",
+  major:      "Major in Chemistry<br>Minor in Computing + Mathematical Sciences",
   email:      "czhang@caltech.edu",
-  photo:      "Chi_profile.jpg",                  // 填入照片文件名，如 "photo.jpg"；留空显示姓名首字
-  scholar: "https://scholar.google.com/citations?user=qUVUbukAAAAJ&hl=en",   // Google Scholar 链接
-  linkedin:   "",                  // 填入 LinkedIn 链接，如 "https://linkedin.com/in/yourname"
-  cv:         "",                  // 填入 CV 文件名，如 "CV_ChiZhang.pdf"；留空则不显示
+  photo:      "Chi_profile.jpg",
+  scholar:    "https://scholar.google.com/citations?user=qUVUbukAAAAJ&hl=en",
+  linkedin:   "",
+  cv:         "",
 
   about: `
     I am a Ph.D. candidate in Chemistry at
@@ -127,23 +120,17 @@ const ME = {
 /* ============================================================
    ★★★  论文列表  ★★★
    新增一篇 → 在最前面复制一个 { } 块，填入信息即可
-   - journal: 期刊缩写（同时决定徽章颜色，见下方颜色表）
+   - journal: 期刊缩写（同时决定徽章颜色，见颜色表）
    - title:   论文标题
    - authors: 作者列表，用 **Chi Zhang** 加粗自己的名字，用 † 标注共同一作
    - venue:   完整期刊+年份，支持 HTML
    - doi:     DOI 链接；留空则不显示 Paper 按钮
-   - status:  "published" / "under review" / "under revision"（影响徽章显示）
-   ============================================================
+   - status:  "published" / "under review" / "under revision"
 
-   期刊颜色对照表（journal 值 → 颜色）：
-     JACS       → 红
-     Org        → 蓝
-     NatComm    → 深灰
-     SciAdv     → 橙
-     ACSomega   → 绿
-     ChemComm   → 紫
-     其他任意值  → 中性灰
-*/
+   期刊颜色表：JACS→深蓝  Organomet→蓝  ACSOmega→浅蓝
+               ChemComm→红  Nature→黑  NatComm→橙
+               SciAdv→青  其他→灰
+   ============================================================ */
 
 const PUBS = [
   {
@@ -166,7 +153,7 @@ const PUBS = [
     journal: "JACS",
     title:   "Engineering Enantiocomplementary Protoglobins for Stereoconvergent Construction of N-Alkylated α-Aminoketones",
     authors: "Qin, Z.-Y.†; Li, Z.-Q.†; **Chi Zhang**; Heise, J. L.; Houk, K. N.; Goddard III, W. A.; Arnold, F. H.",
-    venue:   "<strong>J. Am. Chem. Soc.</strong> ",
+    venue:   "<strong>J. Am. Chem. Soc.</strong>",
     doi:     "https://doi.org/10.1021/jacs.5c17989",
     status:  "published",
   },
@@ -174,7 +161,7 @@ const PUBS = [
     journal: "SciAdv",
     title:   "Selective Cobalt and Nickel Separation by Bioacid-Mediated Electrowinning",
     authors: "Li, T.; **Chi Zhang**; Zhou, H.; et al.; Goddard III, W. A.; Liu, Y.",
-    venue:   "<strong>Sci. Adv.</strong> 12,eaec7956(2026)",
+    venue:   "<strong>Sci. Adv.</strong> 12, eaec7956 (2026)",
     doi:     "https://doi.org/10.1126/sciadv.aec7956",
     status:  "published",
   },
@@ -214,7 +201,6 @@ const PUBS = [
 
 /* ============================================================
    ★★★  教育 & 科研经历  ★★★
-   新增一条 → 复制一个 { } 块填入即可
    ============================================================ */
 
 const EDUCATION = [
@@ -273,7 +259,7 @@ const EDUCATION = [
 
 const AWARDS = [
   { year:"2026", text:"<a href='https://scholarship.cesasc.org/' target='_blank'><strong>CESASC Scholarship</strong></a>" },
-  { year:"2023", text:"<a href='https://news.ustc.edu.cn/info/1047/82697.htm' target='_blank'><strong>Guo Moruo Scholarship</strong></a> — highest honor for undergrad students at USTC, equals <strong><i>summa cum laude</i></strong> " },
+  { year:"2023", text:"<a href='https://news.ustc.edu.cn/info/1047/82697.htm' target='_blank'><strong>Guo Moruo Scholarship</strong></a> — highest honor for undergrad students at USTC, equals <strong><i>summa cum laude</i></strong>" },
   { year:"2022", text:"Huang Minglong Scholarship — awarded by SIOC" },
   { year:"2021", text:"<strong>National Scholarship</strong> — ranked <strong>1 / 155</strong>, top 0.2% nationally" },
   { year:"2020–21", text:"Endeavour Scholarship — awarded for exceptional academic progress" },
@@ -301,7 +287,6 @@ const SKILLS = [
 
 /* ============================================================
    ★★★  服务 & 其他  ★★★
-   支持 HTML
    ============================================================ */
 
 const SERVICES = `
@@ -310,55 +295,25 @@ const SERVICES = `
   <p style="margin-left:1.2em; margin-top:-8px;">Teaching Assistant, General Chemistry A, USTC, Fall 2021 — lectured on selected topics, organized weekly discussions, graded assignments and exams.</p>
   <p style="margin-left:1.2em;">Teaching Assistant, Chem 3x: Experimental Methods in Solar Energy Conversion, Caltech, Fall 2023 – Spring 2024 — lectured weekly introduction sections with chalktalk; supervised experiments; graded assignments and reports.</p>
   <p><strong>Community Leadership:</strong> President, Caltech Chinese Association (Caltech C), Aug. 2025 – Present.</p>
-  <p style="margin-left:1.2em; margin-top:-8px;">Spearheaded the organization of Caltech C's 40th Anniversary Alumni Reunion, coordinating outreach across graduating classes spanning four decades; managed event logistics and cross-generational alumni engagement. </p>
-  <p style="margin-left:1.2em; margin-top:-8px;">Launched the Caltech C Forum series, hosting distinguished alumni speakers.</p>
+  <p style="margin-left:1.2em; margin-top:-8px;">Spearheaded the organization of Caltech C's 40th Anniversary Alumni Reunion, coordinating outreach across graduating classes spanning four decades; managed event logistics and cross-generational alumni engagement. Launched the Caltech C Forum series, hosting distinguished alumni speakers.</p>
 `;
 
 /* ============================================================
    以下是渲染代码，不需要修改
    ============================================================ */
-/* ============================================================
-   ★★★  生活 & 兴趣爱好  ★★★
-   新增照片 → 在对应分类里复制一个 { } 块填入即可
-   - src:     照片文件名，如 "climbing1.jpg"（和 index.html 放同一文件夹）
-   - caption: 照片说明，如 "约塞米蒂 · 2024"
-   新增分类 → 复制一个 { category, photos } 块
-   ============================================================ */
 
-const LIFE = [
-  {
-    category: "🧗 Sports",
-    photos: [
-      { src: "First_V6.png", caption: "First V6 ever at the Post, Jan.31 2026" },
-      { src: "First_OutdoorBouldering_in_Bishop.png", caption: "Fist time outdoor bouldering in Bishop, Nov.24 2025" },
-    ],
-  },
-  {
-    category: "✈️ Travel",
-    photos: [
-      { src: "KeyWest.png", caption: "Key West, Southernmost Point of the Continental US, Dec.25 2025" },
-    ],
-  },
-];
 const JOURNAL_COLORS = {
-  // ACS 系列 — 蓝色系
-  JACS:        "#1a3a6b",
-  Organomet:         "#2B5BA8",
-  ACSOmega:    "#5B8DD9",
-
-  // RSC 系列 — 红色系
-  ChemComm:    "#C8102E",
-
-  // Nature 系列
-  Nature:      "#000000",
-  NatChem:     "#3953A4",
-  NatComm:     "#E5652B",
-  NatCatal:    "#7B4F9E",
-  NatSynth:    "#2E8B57",
-
-  // AAAS 系列 — 深青系
-  Science:     "#00687A",
-  SciAdv:      "#2E9EB0",
+  JACS:      "#1a3a6b",
+  Organomet: "#2B5BA8",
+  ACSOmega:  "#5B8DD9",
+  ChemComm:  "#C8102E",
+  Nature:    "#000000",
+  NatChem:   "#3953A4",
+  NatComm:   "#E5652B",
+  NatCatal:  "#7B4F9E",
+  NatSynth:  "#2E8B57",
+  Science:   "#00687A",
+  SciAdv:    "#2E9EB0",
 };
 
 function authorHTML(str) {
@@ -368,27 +323,22 @@ function authorHTML(str) {
 }
 
 function buildPage() {
-  // Sidebar
-  const avatarSrc = ME.photo
-    ? ME.photo
-    : `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150"><rect width="150" height="150" rx="75" fill="%23d0e8f8"/><text x="75" y="95" font-size="48" text-anchor="middle" fill="%232a5c8a" font-family="Georgia">${ME.name[0]}</text></svg>`;
+  const avatarSrc = ME.photo || `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150"><rect width="150" height="150" rx="75" fill="%23d0e8f8"/><text x="75" y="95" font-size="48" text-anchor="middle" fill="%232a5c8a" font-family="Georgia">${ME.name[0]}</text></svg>`;
   document.getElementById("avatar").src = avatarSrc;
   document.getElementById("sb-name").textContent = ME.name;
   document.getElementById("sb-pos").textContent = ME.position;
   document.getElementById("sb-aff").textContent = ME.affiliation;
   document.getElementById("sb-major").innerHTML = ME.major;
-  document.title = `${ME.name} | ${ME.affiliation.split(" ").slice(-1)[0]}`;
+  document.title = `${ME.name} | Caltech`;
 
   const links = document.getElementById("sb-links");
-  if (ME.scholar) links.innerHTML += `<a href="${ME.scholar}" target="_blank"><i class="fas fa-graduation-cap"></i>Google Scholar</a>`;
+  if (ME.scholar)  links.innerHTML += `<a href="${ME.scholar}" target="_blank"><i class="fas fa-graduation-cap"></i>Google Scholar</a>`;
   links.innerHTML += `<a href="mailto:${ME.email}"><i class="fas fa-envelope"></i>Email: ${ME.email}</a>`;
   if (ME.linkedin) links.innerHTML += `<a href="${ME.linkedin}" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>`;
-  if (ME.cv) links.innerHTML += `<a href="${ME.cv}" target="_blank"><i class="fas fa-file-pdf"></i>CV</a>`;
+  if (ME.cv)       links.innerHTML += `<a href="${ME.cv}" target="_blank"><i class="fas fa-file-pdf"></i>CV</a>`;
 
-  // About
   document.getElementById("about-text").innerHTML = ME.about;
 
-  // Research
   const rl = document.getElementById("research-list");
   ME.research.forEach(r => {
     const li = document.createElement("li");
@@ -396,19 +346,15 @@ function buildPage() {
     rl.appendChild(li);
   });
 
-  // Publications
   const pl = document.getElementById("pub-list");
   PUBS.forEach(p => {
     const color = JOURNAL_COLORS[p.journal] || "#888";
     const statusHTML = p.status === "published"
       ? (p.doi ? `<a class="pl" href="${p.doi}" target="_blank">Paper</a>` : "")
       : `<span class="pb">${p.status === "under review" ? "Under Review" : "Under Revision"}</span>`;
-
     pl.innerHTML += `
       <li class="pub-item">
-        <div class="pub-thumb">
-          <span class="thumb-badge" style="background:${color}">${p.journal}</span>
-        </div>
+        <div class="pub-thumb"><span class="thumb-badge" style="background:${color}">${p.journal}</span></div>
         <div class="pub-body">
           <div class="pub-title">${p.title}</div>
           <div class="pub-authors">${authorHTML(p.authors)}</div>
@@ -418,7 +364,6 @@ function buildPage() {
       </li>`;
   });
 
-  // Education
   const el = document.getElementById("edu-list");
   EDUCATION.forEach(e => {
     el.innerHTML += `
@@ -426,18 +371,16 @@ function buildPage() {
         <div class="edu-logo">${e.logo}</div>
         <div>
           <div class="edu-inst">${e.inst}</div>
-          ${e.lines.map((l, i) => `<div class="edu-detail" ${i === e.lines.length - 1 ? "" : ""}>${l}</div>`).join("")}
+          ${e.lines.map(l => `<div class="edu-detail">${l}</div>`).join("")}
         </div>
       </li>`;
   });
 
-  // Awards
   const al = document.getElementById("award-list");
   AWARDS.forEach(a => {
     al.innerHTML += `<li class="aw-item"><span class="aw-year">${a.year}</span><span>${a.text}</span></li>`;
   });
 
-  // Skills
   const sl = document.getElementById("skill-list");
   SKILLS.forEach(s => {
     sl.innerHTML += `
@@ -447,40 +390,25 @@ function buildPage() {
       </div>`;
   });
 
-  // Services
   document.getElementById("services-text").innerHTML = SERVICES;
-  // Life & Interests
-  const ll = document.getElementById("life-list");
-  LIFE.forEach(cat => {
-    let photosHTML = cat.photos.map(p => `
-      <div class="masonry-item">
-        <img src="${p.src}" alt="${p.caption}" loading="lazy" />
-        <div class="masonry-caption">${p.caption}</div>
-      </div>`).join("");
-    ll.innerHTML += `
-      <div class="life-category">
-        <h3>${cat.category}</h3>
-        <div class="masonry">${photosHTML}</div>
-      </div>`;
-  });
-}
 
-document.addEventListener("DOMContentLoaded", function() {
-  buildPage();
+  // Clustrmaps
   const s = document.createElement("script");
   s.type = "text/javascript";
   s.src = "//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=rqZ62Ag64qHPpJTkKMOXDdF3MA5vfZfPdjuMOtonGlg&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=ffffff";
   document.getElementById("clustrmaps-container").appendChild(s);
-});
+}
+
+document.addEventListener("DOMContentLoaded", buildPage);
 </script>
 
 <div class="wrapper">
   <aside class="sidebar">
     <img id="avatar" class="avatar" alt="avatar" />
     <div class="name" id="sb-name"></div>
-    <div class="pos" id="sb-pos"></div>
-    <div class="aff" id="sb-aff"></div>
-    <div class="pos" id="sb-major"></div>
+    <div class="pos"  id="sb-pos"></div>
+    <div class="aff"  id="sb-aff"></div>
+    <div class="pos"  id="sb-major"></div>
     <div class="s-links" id="sb-links"></div>
     <nav class="s-nav">
       <a href="#about">About Me</a>
@@ -490,7 +418,7 @@ document.addEventListener("DOMContentLoaded", function() {
       <a href="#awards">Awards</a>
       <a href="#skills">Skills</a>
       <a href="#services">Services</a>
-      <a href="#life">Life & Interests</a>
+      <a href="life.html" style="margin-top:8px; font-size:12px;">· · · Beyond Research →</a>
     </nav>
   </aside>
 
@@ -530,12 +458,6 @@ document.addEventListener("DOMContentLoaded", function() {
       <h2>Services</h2>
       <div id="services-text"></div>
     </section>
-    
-    <section id="life">
-    <h2>Life &amp; Interests</h2>
-    <div id="life-list"></div>
-    </section>
-    
   </main>
 </div>
 
