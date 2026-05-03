@@ -350,7 +350,7 @@ function buildPage() {
 
   const links = document.getElementById("sb-links");
   if (ME.scholar) links.innerHTML += `<a href="${ME.scholar}" target="_blank"><i class="fas fa-graduation-cap"></i>Google Scholar</a>`;
-  links.innerHTML += `<a href="mailto:${ME.email}"><i class="fas fa-envelope"></i>Email</a>`;
+  links.innerHTML += `<a href="mailto:${ME.email}"><i class="fas fa-envelope"></i>Email: ${ME.email}</a>`;
   if (ME.linkedin) links.innerHTML += `<a href="${ME.linkedin}" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>`;
   if (ME.cv) links.innerHTML += `<a href="${ME.cv}" target="_blank"><i class="fas fa-file-pdf"></i>CV</a>`;
 
