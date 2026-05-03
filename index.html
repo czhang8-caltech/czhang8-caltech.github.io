@@ -346,7 +346,6 @@ function buildPage() {
   document.getElementById("sb-pos").textContent = ME.position;
   document.getElementById("sb-aff").textContent = ME.affiliation;
   document.getElementById("sb-major").textContent = ME.major;
-  document.getElementById("sb-email").textContent = ME.email.replace("@", " (at) ");
   document.title = `${ME.name} | ${ME.affiliation.split(" ").slice(-1)[0]}`;
 
   const links = document.getElementById("sb-links");
