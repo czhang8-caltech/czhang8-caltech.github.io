@@ -69,6 +69,13 @@
     .sk-group h4 { font-size:12px; text-transform:uppercase; letter-spacing:.07em; color:var(--text-muted); margin-bottom:8px; }
     .sk-tags { display:flex; flex-wrap:wrap; gap:6px; }
     .sk-tag { font-size:12px; padding:3px 10px; background:var(--bg-alt); border:1px solid var(--border); border-radius:12px; color:var(--text); }
+    .life-category { margin-bottom:32px; }
+    .life-category h3 { font-family:var(--font-serif); font-size:18px; font-weight:normal; margin-bottom:14px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+    .masonry { columns:2; column-gap:12px; }
+    .masonry-item { break-inside:avoid; margin-bottom:12px; border-radius:6px; overflow:hidden; border:1px solid var(--border); }
+    .masonry-item img { width:100%; display:block; transition:transform 0.2s; }
+    .masonry-item:hover img { transform:scale(1.02); }
+    .masonry-caption { font-size:12px; color:var(--text-muted); padding:6px 10px; background:var(--bg-alt); }
     footer { text-align:center; padding:20px; font-size:12px; color:var(--text-muted); border-top:1px solid var(--border); }
     @media (max-width:680px) { .wrapper { flex-direction:column; gap:28px; } .sidebar { width:100%; position:static; } .pub-thumb { display:none; } }
   </style>
@@ -310,7 +317,30 @@ const SERVICES = `
 /* ============================================================
    以下是渲染代码，不需要修改
    ============================================================ */
+/* ============================================================
+   ★★★  生活 & 兴趣爱好  ★★★
+   新增照片 → 在对应分类里复制一个 { } 块填入即可
+   - src:     照片文件名，如 "climbing1.jpg"（和 index.html 放同一文件夹）
+   - caption: 照片说明，如 "约塞米蒂 · 2024"
+   新增分类 → 复制一个 { category, photos } 块
+   ============================================================ */
 
+const LIFE = [
+  {
+    category: "🧗 Sports",
+    photos: [
+      { src: "sports1.jpg", caption: "Your caption here" },
+    ],
+  },
+  {
+    category: "✈️ Travel",
+    photos: [
+      { src: "travel1.jpg", caption: "Your caption here" },
+      { src: "travel2.jpg", caption: "Your caption here" },
+      { src: "travel3.jpg", caption: "Your caption here" },
+    ],
+  },
+];
 const JOURNAL_COLORS = {
   // ACS 系列 — 蓝色系
   JACS:        "#1a3a6b",
@@ -429,6 +459,20 @@ document.addEventListener("DOMContentLoaded", function() {
   s.src = "//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=rqZ62Ag64qHPpJTkKMOXDdF3MA5vfZfPdjuMOtonGlg&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=ffffff";
   document.getElementById("clustrmaps-container").appendChild(s);
 });
+  // Life & Interests
+  const ll = document.getElementById("life-list");
+  LIFE.forEach(cat => {
+    let photosHTML = cat.photos.map(p => `
+      <div class="masonry-item">
+        <img src="${p.src}" alt="${p.caption}" loading="lazy" />
+        <div class="masonry-caption">${p.caption}</div>
+      </div>`).join("");
+    ll.innerHTML += `
+      <div class="life-category">
+        <h3>${cat.category}</h3>
+        <div class="masonry">${photosHTML}</div>
+      </div>`;
+  });
 </script>
 
 <div class="wrapper">
@@ -447,6 +491,7 @@ document.addEventListener("DOMContentLoaded", function() {
       <a href="#awards">Awards</a>
       <a href="#skills">Skills</a>
       <a href="#services">Services</a>
+      <a href="#life">Life & Interests</a>
     </nav>
   </aside>
 
@@ -486,6 +531,12 @@ document.addEventListener("DOMContentLoaded", function() {
       <h2>Services</h2>
       <div id="services-text"></div>
     </section>
+    
+    <section id="life">
+    <h2>Life &amp; Interests</h2>
+    <div id="life-list"></div>
+    </section>
+    
   </main>
 </div>
 
