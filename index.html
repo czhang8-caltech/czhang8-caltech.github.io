@@ -310,7 +310,7 @@ const SERVICES = `
   <p style="margin-left:1.2em; margin-top:-8px;">Teaching Assistant, General Chemistry A, USTC, Fall 2021 — lectured on selected topics, organized weekly discussions, graded assignments and exams.</p>
   <p style="margin-left:1.2em;">Teaching Assistant, Chem 3x: Experimental Methods in Solar Energy Conversion, Caltech, Fall 2023 – Spring 2024 — lectured weekly introduction sections with chalktalk; supervised experiments; graded assignments and reports.</p>
   <p><strong>Community Leadership:</strong> President, Caltech Chinese Association (Caltech C), Aug. 2025 – Present.</p>
-  <p style="margin-left:1.2em; margin-top:-8px;">Spearheaded the organization of Caltech C's 40th Anniversary Alumni Reunion, coordinating outreach across graduating classes spanning four decades; managed event logistics and cross-generational alumni engagement. 
+  <p style="margin-left:1.2em; margin-top:-8px;">Spearheaded the organization of Caltech C's 40th Anniversary Alumni Reunion, coordinating outreach across graduating classes spanning four decades; managed event logistics and cross-generational alumni engagement. </p>
   <p style="margin-left:1.2em; margin-top:-8px;">Launched the Caltech C Forum series, hosting distinguished alumni speakers.</p>
 `;
 
@@ -330,8 +330,6 @@ const LIFE = [
     category: "🧗 Sports",
     photos: [
       { src: "Fist_V6.png", caption: "First V6 ever at the Post, Jan.31 2026" },
-    ],
-    photos: [
       { src: "Fist_OutdoorBouldering_in_Bishop.png", caption: "Fist time outdoor bouldering in Bishop, Nov.24 2025" },
     ],
   },
@@ -453,15 +451,6 @@ function buildPage() {
 
   // Services
   document.getElementById("services-text").innerHTML = SERVICES;
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  buildPage();
-  const s = document.createElement("script");
-  s.type = "text/javascript";
-  s.src = "//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=rqZ62Ag64qHPpJTkKMOXDdF3MA5vfZfPdjuMOtonGlg&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=ffffff";
-  document.getElementById("clustrmaps-container").appendChild(s);
-});
   // Life & Interests
   const ll = document.getElementById("life-list");
   LIFE.forEach(cat => {
@@ -476,6 +465,15 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="masonry">${photosHTML}</div>
       </div>`;
   });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  buildPage();
+  const s = document.createElement("script");
+  s.type = "text/javascript";
+  s.src = "//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=rqZ62Ag64qHPpJTkKMOXDdF3MA5vfZfPdjuMOtonGlg&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=ffffff";
+  document.getElementById("clustrmaps-container").appendChild(s);
+});
 </script>
 
 <div class="wrapper">
