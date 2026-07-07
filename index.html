@@ -65,11 +65,11 @@
     .pb { font-size:12px; padding:2px 8px; border-radius:3px; background:#fff3cd; color:#856404; border:1px solid #ffc107; font-style:italic; }
     @media (prefers-color-scheme:dark) { .pb { background:#2d2500; color:#ffc107; border-color:#5a4000; } }
     .edu-list { list-style:none; padding:0; }
-    .edu-item { display:flex; gap:14px; margin-bottom:18px; }
-    .edu-logo { width:42px; height:42px; flex-shrink:0; border-radius:50%; background:var(--bg-alt); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:var(--text-muted); text-align:center; line-height:1.2; }
+    .edu-item { display:flex; gap:14px; margin-bottom:18px; align-items:flex-start; }
+    .edu-logo { width:42px; height:42px; flex-shrink:0; border-radius:50%; background:var(--bg-alt); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:var(--text-muted); text-align:center; line-height:1.2; overflow:hidden; }
     .edu-inst { font-size:15px; font-weight:600; margin-bottom:2px; }
     .edu-detail { font-size:13px; color:var(--text-muted); margin-bottom:1px; }
-    .edu-cols { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .edu-cols { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
     .edu-col-title { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:14px; padding-bottom:6px; border-bottom:1px solid var(--border); }
     .aw-list { list-style:none; padding:0; }
     .aw-item { display:flex; gap:12px; padding:6px 0; border-bottom:1px solid var(--border); font-size:14px; }
@@ -80,14 +80,13 @@
     .sk-tags { display:flex; flex-wrap:wrap; gap:6px; }
     .sk-tag { font-size:12px; padding:3px 10px; background:var(--bg-alt); border:1px solid var(--border); border-radius:12px; color:var(--text); }
     footer { text-align:center; padding:20px; font-size:12px; color:var(--text-muted); border-top:1px solid var(--border); }
-    @media (max-width:680px) { .wrapper { flex-direction:column; gap:28px; } .sidebar { width:100%; position:static; } .pub-thumb { display:none; } }
+    @media (max-width:680px) { .wrapper { flex-direction:column; gap:28px; } .sidebar { width:100%; position:static; } .pub-thumb { display:none; } .edu-cols { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
 <script>
 /* ============================================================
    ★★★  个人信息区  ★★★
-   只需要修改这里，不用动下面的任何代码
    ============================================================ */
 
 const ME = {
@@ -129,17 +128,9 @@ const ME = {
 
 /* ============================================================
    ★★★  论文列表  ★★★
-   新增一篇 → 在最前面复制一个 { } 块，填入信息即可
-   - journal: 期刊缩写（同时决定徽章颜色，见颜色表）
-   - title:   论文标题
-   - authors: 作者列表，用 **Chi Zhang** 加粗自己的名字，用 † 标注共同一作
-   - venue:   完整期刊+年份，支持 HTML
-   - doi:     DOI 链接；留空则不显示 Paper 按钮
-   - status:  "published" / "under review" / "under revision"
-
-   期刊颜色表：JACS→深蓝  Organomet→蓝  ACSOmega→浅蓝
-               ChemComm→红  Nature→黑  NatComm→橙
-               SciAdv→青  其他→灰
+   - journal: 期刊缩写（决定徽章颜色）
+   - authors: 用 **Chi Zhang** 加粗，† 标注共同一作
+   - status:  "published" / "accepted" / "under review" / "under revision"
    ============================================================ */
 
 const PUBS = [
@@ -163,7 +154,7 @@ const PUBS = [
     journal: "JACS",
     title:   "Engineering Enantiocomplementary Protoglobins for Stereoconvergent Construction of N-Alkylated α-Aminoketones",
     authors: "Qin, Z.-Y.†; Li, Z.-Q.†; **Chi Zhang**; Heise, J. L.; Houk, K. N.; Goddard III, W. A.; Arnold, F. H.",
-    venue:   "<strong>J. Am. Chem. Soc. </strong>2026, 148, 18, 18555–18561",
+    venue:   "<strong>J. Am. Chem. Soc.</strong> 2026, 148, 18, 18555–18561",
     doi:     "https://doi.org/10.1021/jacs.5c17989",
     status:  "published",
   },
@@ -211,35 +202,54 @@ const PUBS = [
 
 /* ============================================================
    ★★★  教育 & 科研经历  ★★★
+   type: "edu" → 左栏 Education
+   type: "res" → 右栏 Research Experience
+   logoScale: 数字 → 可选，用于放大有白边的校徽（如 1.2）
    ============================================================ */
 
 const EDUCATION = [
-  // ── Education（左栏）──
+  // ── Education（左栏，倒序）──
   { type:"edu", logo:"CIT", logoUrl:"Logo_caltech.png",
     inst:"California Institute of Technology",
-    lines:["Ph.D. Candidate in Chemistry · Sept. 2023 – Expected Jun. 2029",
-           "M.Sc. in Chemistry · Sept. 2023 – Jun. 2025",
-           "Advisors: Prof. K. N. Houk & Prof. W. A. Goddard III"] },
-  { type:"edu", logo:"SUSTech", logoUrl:"Logo_sustech.png",
+    lines:[
+      "Ph.D. Candidate in Chemistry · Sept. 2023 – Expected Jun. 2029",
+      "M.Sc. in Chemistry · Sept. 2023 – Jun. 2025",
+      "Advisors: Prof. K. N. Houk & Prof. W. A. Goddard III",
+    ]},
+  { type:"edu", logo:"SUSTech", logoUrl:"Logo_sustech.png", logoScale:1.2,
     inst:"Southern University of Science and Technology",
-    lines:["Visiting Student · Jun. – Aug. 2023 · Liu Leo Liu Group"] },
+    lines:[
+      "Visiting Student · Jun. – Aug. 2023",
+      "Advisor: Prof. Leo Liu",
+    ]},
   { type:"edu", logo:"USTC", logoUrl:"Logo_ustc.png",
     inst:"University of Science and Technology of China",
-    lines:["B.Sc. in Chemistry, <em>summa cum laude</em> · Aug. 2019 – Jun. 2023",
-           "Advisor: Prof. Hanmin Huang"] },
+    lines:[
+      "B.Sc. in Chemistry, <em>summa cum laude</em> · Aug. 2019 – Jun. 2023",
+      "Advisor: Prof. Hanmin Huang",
+    ]},
 
-  // ── Research Experience（右栏）──
+  // ── Research Experience（右栏，倒序）──
   { type:"res", logo:"UCLA", logoUrl:"Logo_ucla.png",
     inst:"University of California, Los Angeles",
-    lines:["Remote Research Intern · Aug. – Sept. 2023 · K. N. Houk Group"] },
+    lines:[
+      "Research Intern · Aug. – Sept. 2023",
+      "Advisor: Prof. K. N. Houk",
+    ]},
   { type:"res", logo:"NU", logoUrl:"Logo_nu.png",
     inst:"Northwestern University",
-    lines:["Research Intern · Jul. 2022 – Nov. 2022",
-           "Advisors: Prof. Tobin Marks & Prof. Yosi Kratish · Polyurethane upcycling"] },
+    lines:[
+      "Research Intern · Jul. – Nov. 2022",
+      "Advisors: Prof. Tobin Marks & Prof. Yosi Kratish",
+      "Project: Polyurethane catalytic upcycling",
+    ]},
   { type:"res", logo:"NU", logoUrl:"Logo_nu.png",
     inst:"Northwestern University",
-    lines:["Online Research Training · Jun. – Aug. 2021",
-           "Advisor: Prof. Thomas Meade · Zinc finger protein inhibitors"] },
+    lines:[
+      "Online Research Training · Jun. – Aug. 2021",
+      "Advisor: Prof. Thomas Meade",
+      "Project: Zinc finger protein inhibitors",
+    ]},
 ];
 
 /* ============================================================
@@ -306,6 +316,7 @@ const JOURNAL_COLORS = {
 };
 
 function authorHTML(str) {
+  if (!str) return "";
   return str
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/†/g, "†");
@@ -343,12 +354,13 @@ function buildPage() {
       : p.status === "accepted"
       ? `<span class="pb" style="background:#d4edda;color:#155724;border-color:#c3e6cb;">Accepted</span>`
       : `<span class="pb">${p.status === "under review" ? "Under Review" : "Under Revision"}</span>`;
+    const authorsHTML = authorHTML(p.authors);
     pl.innerHTML += `
       <li class="pub-item">
         <div class="pub-thumb"><span class="thumb-badge" style="background:${color}">${p.journal}</span></div>
         <div class="pub-body">
           <div class="pub-title">${p.title}</div>
-          <div class="pub-authors">${authorHTML(p.authors)}</div>
+          ${authorsHTML ? `<div class="pub-authors">${authorsHTML}</div>` : ""}
           <div class="pub-venue">${p.venue}</div>
           <div class="pub-links">${statusHTML}</div>
         </div>
@@ -359,13 +371,13 @@ function buildPage() {
   const el_res = document.getElementById("edu-list-res");
   EDUCATION.forEach(e => {
     const el = e.type === "edu" ? el_edu : el_res;
+    const scale = e.logoScale ? `transform:scale(${e.logoScale});` : "";
+    const logoHTML = e.logoUrl
+      ? `<img src="${e.logoUrl}" style="width:38px;height:38px;object-fit:contain;border-radius:50%;${scale}" />`
+      : e.logo;
     el.innerHTML += `
-          <li class="edu-item">
-            <div class="edu-logo" style="overflow:hidden;padding:2px;flex-shrink:0;">
-              ${e.logoUrl
-                ? `<img src="${e.logoUrl}" style="width:38px;height:38px;object-fit:contain;border-radius:50%;" />`
-                : e.logo}
-            </div>
+      <li class="edu-item">
+        <div class="edu-logo">${logoHTML}</div>
         <div>
           <div class="edu-inst">${e.inst}</div>
           ${e.lines.map(l => `<div class="edu-detail">${l}</div>`).join("")}
