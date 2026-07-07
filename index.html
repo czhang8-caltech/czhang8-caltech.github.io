@@ -34,7 +34,8 @@
     .avatar { width:150px; height:150px; border-radius:50%; border:2px solid var(--border); margin-bottom:14px; background:var(--bg-alt); display:block; margin-left:auto; margin-right:auto; }
     .sidebar .name { font-family:var(--font-serif); font-size:20px; font-weight:normal; margin-bottom:4px; }
     .sidebar .pos, .sidebar .aff { font-size:13px; color:var(--text-muted); margin-bottom:2px; }
-    .s-links { display:flex; flex-direction:column; gap:5px; align-items:center; margin-bottom:18px; }
+    .sidebar .tagline { font-size:12px; color:var(--text-muted); font-style:italic; line-height:1.4; margin:8px 4px 0; }
+    .s-links { display:flex; flex-direction:column; gap:5px; align-items:center; margin:18px 0; }
     .s-links a { font-size:13px; color:var(--text-muted); display:flex; align-items:center; gap:6px; }
     .s-links a:hover { color:var(--accent); text-decoration:none; }
     .s-links i { width:14px; text-align:center; }
@@ -91,9 +92,10 @@
 
 const ME = {
   name:       "Chi Zhang",
-  position:   "Ph.D. Candidate",
+  position:   "Ph.D. Candidate in Chemistry",
   affiliation:"California Institute of Technology",
-  major:      "Major in Chemistry<br>Minor in Computing + Mathematical Sciences",
+  major:      "Minor in Computing + Mathematical Sciences",
+  tagline:    "Understanding molecules, mechanisms, and the stories behind them.",
   email:      "czhang@caltech.edu",
   photo:      "Chi_profile.jpg",
   scholar:    "https://scholar.google.com/citations?user=qUVUbukAAAAJ&hl=en",
@@ -101,27 +103,31 @@ const ME = {
   cv:         "",
 
   about: `
-    I am a Ph.D. candidate in Chemistry at
+    I am a Ph.D. candidate in Chemistry at the
     <a href="https://www.caltech.edu" target="_blank">California Institute of Technology (Caltech)</a>,
-    working in the groups of Prof.
-    <a href="https://www.chem.ucla.edu/houk/" target="_blank">K. N. Houk</a> and Prof.
-    <a href="https://www.wag.caltech.edu" target="_blank">W. A. Goddard III</a>.
-    My research combines DFT-level computation with wet-lab synthesis to elucidate
-    catalytic mechanisms, design new catalysts, and build predictive models for
-    selectivity and reactivity.
+    working in the group of Prof.
+    <a href="https://www.wag.caltech.edu" target="_blank">W. A. Goddard III</a>,
+    with close collaborations with Prof.
+    <a href="https://www.chem.ucla.edu/houk/" target="_blank">K. N. Houk</a>.
+    My research focuses on computational mechanistic chemistry — using DFT-level
+    calculations, molecular modeling, and data-driven analysis to understand catalytic
+    mechanisms, selectivity, and reactivity, often in close partnership with experimental groups.
     <br><br>
     Before Caltech, I earned my B.Sc. in Chemistry <em>summa cum laude</em> from
     <a href="https://en.ustc.edu.cn" target="_blank">USTC</a>, where I received the
-    <strong>Guo Moruo Scholarship</strong>.
-    I also interned at Northwestern University (Marks Group), SUSTech (Liu Group),
-    and UCLA (Houk Group).
-    I serve as an ad hoc reviewer for <em>ACS Applied Materials &amp; Interfaces</em>.
+    <strong>Guo Moruo Scholarship</strong>. I have also worked with research groups at
+    Northwestern University, SUSTech, and UCLA on projects spanning organometallic
+    chemistry, polymer upcycling, reaction mechanisms, and computational chemistry.
+    <br><br>
+    Beyond research, I enjoy communicating science and building academic communities.
+    I currently serve as President of Caltech C, organizing academic, cultural, and
+    alumni events for the Chinese community at Caltech.
   `,
 
   research: [
-    { bold:"Computational Mechanistic Chemistry:", text:"DFT studies of C–H activation, cross-coupling, and asymmetric catalysis" },
-    { bold:"Organometallic & Polymer Chemistry:", text:"transition-metal catalyst synthesis; sustainable polymer upcycling" },
-    { bold:"AI for Chemistry:", text:"machine learning for reaction prediction and catalyst design" },
+    { bold:"Computational Mechanistic Chemistry:", text:"DFT studies of catalytic mechanisms, selectivity, and reactivity" },
+    { bold:"Organometallic Catalysis:", text:"transition-metal catalysis, C–H activation, and cross-coupling" },
+    { bold:"Data-Driven Chemistry:", text:"interpretable models for reaction prediction and catalyst design" },
     { bold:"Bioinorganic Chemistry:", text:"metal complexes targeting zinc finger proteins" },
   ],
 };
@@ -204,7 +210,7 @@ const PUBS = [
    ★★★  教育 & 科研经历  ★★★
    type: "edu" → 左栏 Education
    type: "res" → 右栏 Research Experience
-   logoScale: 数字 → 可选，用于放大有白边的校徽（如 1.2）
+   logoScale: 可选，放大有白边的校徽（如 1.2）
    ============================================================ */
 
 const EDUCATION = [
@@ -213,9 +219,9 @@ const EDUCATION = [
     inst:"California Institute of Technology",
     lines:[
       "Ph.D. Candidate in Chemistry · Sept. 2023 – Expected Jun. 2029",
-      "Minor in Computing + Mathematical Sciences",
       "M.Sc. in Chemistry · Sept. 2023 – Jun. 2025",
-      "Advisors: Prof. William A. Goddard III",
+      "Minor in Computing + Mathematical Sciences",
+      "Advisor: Prof. William A. Goddard III",
     ]},
   { type:"edu", logo:"USTC", logoUrl:"Logo_ustc.png",
     inst:"University of Science and Technology of China",
@@ -241,14 +247,14 @@ const EDUCATION = [
     inst:"Northwestern University",
     lines:[
       "Research Intern · Jul. – Nov. 2022",
-      "Advisors: Prof. Tobin J. Marks",
+      "Advisors: Prof. Tobin Marks & Prof. Yosi Kratish",
       "Project: Polyurethane catalytic upcycling",
     ]},
   { type:"res", logo:"NU", logoUrl:"Logo_nu.png",
     inst:"Northwestern University",
     lines:[
       "Online Research Training · Jun. – Aug. 2021",
-      "Advisor: Prof. Thomas J. Meade",
+      "Advisor: Prof. Thomas Meade",
       "Project: Zinc finger protein inhibitors",
     ]},
 ];
@@ -330,6 +336,7 @@ function buildPage() {
   document.getElementById("sb-pos").textContent = ME.position;
   document.getElementById("sb-aff").textContent = ME.affiliation;
   document.getElementById("sb-major").innerHTML = ME.major;
+  document.getElementById("sb-tagline").textContent = ME.tagline;
   document.title = `${ME.name} | Caltech`;
 
   const links = document.getElementById("sb-links");
@@ -416,6 +423,7 @@ document.addEventListener("DOMContentLoaded", buildPage);
   <aside class="sidebar">
     <img id="avatar" class="avatar" alt="avatar" />
     <div class="name" id="sb-name"></div>
+    <div class="tagline" id="sb-tagline"></div>
     <div class="pos"  id="sb-pos"></div>
     <div class="aff"  id="sb-aff"></div>
     <div class="pos"  id="sb-major"></div>
@@ -427,7 +435,7 @@ document.addEventListener("DOMContentLoaded", buildPage);
       <a href="#education">Education</a>
       <a href="#awards">Awards</a>
       <a href="#skills">Skills</a>
-      <a href="#services">Services</a>
+      <a href="#service">Service</a>
       <a href="life.html" style="margin-top:8px; font-size:12px;">· · · Beyond Research →</a>
     </nav>
   </aside>
@@ -473,8 +481,8 @@ document.addEventListener("DOMContentLoaded", buildPage);
       <div id="skill-list"></div>
     </section>
 
-    <section id="services">
-      <h2>Services</h2>
+    <section id="service">
+      <h2>Service</h2>
       <div id="services-text"></div>
     </section>
   </main>
