@@ -109,9 +109,10 @@ const ME = {
     <a href="https://www.wag.caltech.edu" target="_blank">W. A. Goddard III</a>,
     with close collaborations with Prof.
     <a href="https://www.chem.ucla.edu/houk/" target="_blank">K. N. Houk</a>.
-    My research focuses on computational mechanistic chemistry — using DFT-level
-    calculations, molecular modeling, and data-driven analysis to understand catalytic
-    mechanisms, selectivity, and reactivity, often in close partnership with experimental groups.
+    My research uses quantum chemistry, molecular dynamics, periodic calculations,
+    and data-driven analysis to understand chemical reactivity, catalytic mechanisms,
+    molecular interactions, and materials interfaces, often in close partnership
+    with experimental groups.
     <br><br>
     Before Caltech, I earned my B.Sc. in Chemistry <em>summa cum laude</em> from
     <a href="https://en.ustc.edu.cn" target="_blank">USTC</a>, where I received the
@@ -125,18 +126,16 @@ const ME = {
   `,
 
   research: [
-    { bold:"Computational Mechanistic Chemistry:", text:"DFT studies of catalytic mechanisms, selectivity, and reactivity" },
-    { bold:"Organometallic Catalysis:", text:"transition-metal catalysis, C–H activation, and cross-coupling" },
-    { bold:"Data-Driven Chemistry:", text:"interpretable models for reaction prediction and catalyst design" },
-    { bold:"Bioinorganic Chemistry:", text:"metal complexes targeting zinc finger proteins" },
+    { bold:"Computational Mechanistic Chemistry:", text:"quantum-chemical studies of catalytic mechanisms, selectivity, and reactivity" },
+    { bold:"Molecular Simulation & Periodic Systems:", text:"MD and periodic calculations for molecular interactions, materials interfaces, and condensed-phase environments" },
+    { bold:"Organometallic & Small-Molecule Catalysis:", text:"transition-metal catalysis, C–H activation, cross-coupling, and small-molecule activation" },
+    { bold:"Data-Driven Chemistry:", text:"interpretable models for reaction prediction, catalyst design, and mechanistic analysis" },
   ],
 };
 
 /* ============================================================
    ★★★  论文列表  ★★★
-   - journal: 期刊缩写（决定徽章颜色）
-   - authors: 用 **Chi Zhang** 加粗，† 标注共同一作
-   - status:  "published" / "accepted" / "under review" / "under revision"
+   status: "published" / "accepted" / "under review" / "under revision"
    ============================================================ */
 
 const PUBS = [
@@ -144,7 +143,7 @@ const PUBS = [
     journal: "Nature",
     title:   "Biocatalytic Nitrene Transfer Enables Aziridination of Unactivated Alkenes for the Synthesis of Chiral Oxazolidinones",
     authors: "",
-    venue:   "<strong>Nature</strong>",
+    venue:   "<strong>Nature</strong> — manuscript under revision",
     doi:     "",
     status:  "under revision",
   },
@@ -208,9 +207,6 @@ const PUBS = [
 
 /* ============================================================
    ★★★  教育 & 科研经历  ★★★
-   type: "edu" → 左栏 Education
-   type: "res" → 右栏 Research Experience
-   logoScale: 可选，放大有白边的校徽（如 1.2）
    ============================================================ */
 
 const EDUCATION = [
@@ -265,11 +261,11 @@ const EDUCATION = [
 
 const AWARDS = [
   { year:"2026", text:"<a href='https://scholarship.cesasc.org/' target='_blank'><strong>CESASC Scholarship</strong></a>" },
-  { year:"2023", text:"<a href='https://news.ustc.edu.cn/info/1047/82697.htm' target='_blank'><strong>Guo Moruo Scholarship</strong></a> — highest honor for undergrad students at USTC, equals <strong><i>summa cum laude</i></strong>" },
+  { year:"2023", text:"<a href='https://news.ustc.edu.cn/info/1047/82697.htm' target='_blank'><strong>Guo Moruo Scholarship</strong></a> — USTC's highest undergraduate honor" },
   { year:"2022", text:"Huang Minglong Scholarship — awarded by SIOC" },
   { year:"2021", text:"<strong>National Scholarship</strong> — ranked <strong>1 / 155</strong>, top 0.2% nationally" },
   { year:"2020–21", text:"Endeavour Scholarship — awarded for exceptional academic progress" },
-  { year:"—",    text:"Excellent Athlete in Undergraduates — top 3‰ in comprehensive athletics" },
+  { year:"—",    text:"Outstanding Student-Athlete — top 0.3% in comprehensive athletic evaluation" },
 ];
 
 /* ============================================================
@@ -282,7 +278,7 @@ const SKILLS = [
     tags: ["Python", "C", "Gaussian", "Multiwfn", "Chemcraft", "CCDC Package", "Origin", "MestReNova"],
   },
   {
-    category: "Experimental Techniques",
+    category: "Experimental Background",
     tags: ["Glovebox", "Schlenk Technique", "Cannula Transfer", "Photocatalysis", "Column Chromatography"],
   },
   {
@@ -301,7 +297,7 @@ const SERVICES = `
   <p style="margin-left:1.2em; margin-top:-8px;">Teaching Assistant, General Chemistry A, USTC, Fall 2021 — lectured on selected topics, organized weekly discussions, graded assignments and exams.</p>
   <p style="margin-left:1.2em;">Teaching Assistant, Chem 3x: Experimental Methods in Solar Energy Conversion, Caltech, Fall 2023 – Spring 2024 — lectured weekly introduction sections with chalktalk; supervised experiments; graded assignments and reports.</p>
   <p><strong>Community Leadership:</strong> President, Caltech Chinese Association (Caltech C), Aug. 2025 – Present.</p>
-  <p style="margin-left:1.2em; margin-top:-8px;">Spearheaded the organization of Caltech C's 40th Anniversary Alumni Reunion, coordinating outreach across graduating classes spanning four decades; managed event logistics and cross-generational alumni engagement. Launched the Caltech C Forum series, hosting distinguished alumni speakers.</p>
+  <p style="margin-left:1.2em; margin-top:-8px;">Organized academic, cultural, and alumni events, including Caltech C's 40th Anniversary Alumni Reunion and the Caltech C Forum series.</p>
 `;
 
 /* ============================================================
@@ -361,7 +357,7 @@ function buildPage() {
       ? (p.doi ? `<a class="pl" href="${p.doi}" target="_blank">Paper</a>` : "")
       : p.status === "accepted"
       ? `<span class="pb" style="background:#d4edda;color:#155724;border-color:#c3e6cb;">Accepted</span>`
-      : `<span class="pb">${p.status === "under review" ? "Under Review" : "Under Revision"}</span>`;
+      : `<span class="pb">${p.status === "under review" ? "Under Review" : "Manuscript Under Revision"}</span>`;
     const authorsHTML = authorHTML(p.authors);
     pl.innerHTML += `
       <li class="pub-item">
@@ -434,7 +430,7 @@ document.addEventListener("DOMContentLoaded", buildPage);
       <a href="#publications">Publications</a>
       <a href="#education">Education</a>
       <a href="#awards">Awards</a>
-      <a href="#skills">Skills</a>
+      <a href="#skills">Technical Skills</a>
       <a href="#service">Service</a>
       <a href="life.html" style="margin-top:8px; font-size:12px;">· · · Beyond Research →</a>
     </nav>
@@ -477,7 +473,7 @@ document.addEventListener("DOMContentLoaded", buildPage);
     </section>
 
     <section id="skills">
-      <h2>Skills</h2>
+      <h2>Technical Skills</h2>
       <div id="skill-list"></div>
     </section>
 
