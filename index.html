@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,100 +10,478 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QHVXFW8HHK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() {dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-QHVXFW8HHK');
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     :root {
-      --bg:#fff; --bg-alt:#f6f8fa; --text:#24292e; --text-muted:#6a737d;
-      --accent:#0366d6; --border:#e1e4e8;
-      --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-      --font-serif:Georgia,"Times New Roman",serif;
+      --bg: #fff;
+      --bg-alt: #f6f8fa;
+      --text: #24292e;
+      --text-muted: #6a737d;
+      --accent: #0366d6;
+      --border: #e1e4e8;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-serif: Georgia, "Times New Roman", serif;
     }
+
     @media (prefers-color-scheme:dark) {
-      :root { --bg:#0d1117; --bg-alt:#161b22; --text:#c9d1d9; --text-muted:#8b949e; --accent:#58a6ff; --border:#30363d; }
+      :root {
+        --bg: #0d1117;
+        --bg-alt: #161b22;
+        --text: #c9d1d9;
+        --text-muted: #8b949e;
+        --accent: #58a6ff;
+        --border: #30363d;
+      }
     }
-    html { scroll-behavior:smooth; }
-    body { font-family:var(--font-sans); font-size:16px; line-height:1.6; color:var(--text); background:var(--bg); }
-    a { color:var(--accent); text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    .wrapper { display:flex; max-width:1000px; margin:0 auto; padding:40px 24px; gap:48px; }
-    .sidebar { width:220px; flex-shrink:0; position:sticky; top:40px; align-self:flex-start; text-align:center; }
-    .avatar { width:150px; height:150px; border-radius:50%; border:2px solid var(--border); margin-bottom:14px; background:var(--bg-alt); display:block; margin-left:auto; margin-right:auto; }
-    .sidebar .name { font-family:var(--font-serif); font-size:20px; font-weight:normal; margin-bottom:4px; }
-    .sidebar .pos, .sidebar .aff { font-size:13px; color:var(--text-muted); margin-bottom:2px; }
-    .sidebar .tagline { font-size:12px; color:var(--text-muted); font-style:italic; line-height:1.4; margin:8px 4px 0; }
-    .s-links { display:flex; flex-direction:column; gap:5px; align-items:center; margin:18px 0; }
-    .s-links a { font-size:13px; color:var(--text-muted); display:flex; align-items:center; gap:6px; }
-    .s-links a:hover { color:var(--accent); text-decoration:none; }
-    .s-links i { width:14px; text-align:center; }
-    .s-nav { text-align:left; border-top:1px solid var(--border); padding-top:14px; }
-    .s-nav a { display:block; font-size:14px; color:var(--text-muted); padding:3px 0; }
-    .s-nav a:hover { color:var(--accent); text-decoration:none; }
-    .main { flex:1; min-width:0; }
-    section { margin-bottom:40px; }
-    h2 { font-family:var(--font-serif); font-size:22px; font-weight:normal; border-bottom:1px solid var(--border); padding-bottom:7px; margin-bottom:18px; }
-    p { margin-bottom:12px; }
-    .r-list { list-style:none; padding:0; }
-    .r-list li { padding:3px 0 3px 18px; position:relative; font-size:15px; }
-    .r-list li::before { content:"▸"; position:absolute; left:0; color:var(--accent); font-size:11px; top:7px; }
-    .pub-list { list-style:none; padding:0; }
-    .pub-item { display:flex; gap:18px; margin-bottom:22px; padding-bottom:22px; border-bottom:1px solid var(--border); }
-    .pub-item:last-child { border-bottom:none; }
-    .pub-thumb { width:110px; height:72px; flex-shrink:0; border-radius:4px; background:var(--bg-alt); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; }
-    .thumb-badge { font-size:11px; font-weight:700; letter-spacing:.04em; padding:4px 8px; border-radius:3px; color:#fff; text-align:center; line-height:1.3; }
-    .pub-body { flex:1; min-width:0; }
-    .pub-title { font-size:15px; font-weight:600; line-height:1.4; margin-bottom:4px; }
-    .pub-authors { font-size:13px; color:var(--text-muted); margin-bottom:3px; line-height:1.5; }
-    .pub-authors strong { color:var(--text); }
-    .pub-venue { font-size:13px; font-style:italic; color:var(--text-muted); margin-bottom:7px; }
-    .pub-venue strong { font-style:normal; color:var(--text); }
-    .pub-links { display:flex; flex-wrap:wrap; gap:5px; }
-    .pl { font-size:12px; padding:2px 8px; border:1px solid var(--border); border-radius:3px; color:var(--accent); }
-    .pl:hover { background:var(--bg-alt); text-decoration:none; }
-    .pb { font-size:12px; padding:2px 8px; border-radius:3px; background:#fff3cd; color:#856404; border:1px solid #ffc107; font-style:italic; }
-    @media (prefers-color-scheme:dark) { .pb { background:#2d2500; color:#ffc107; border-color:#5a4000; } }
-    .edu-list { list-style:none; padding:0; }
-    .edu-item { display:flex; gap:14px; margin-bottom:18px; align-items:flex-start; }
-    .edu-logo { width:42px; height:42px; flex-shrink:0; border-radius:50%; background:var(--bg-alt); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:var(--text-muted); text-align:center; line-height:1.2; overflow:hidden; }
-    .edu-inst { font-size:15px; font-weight:600; margin-bottom:2px; }
-    .edu-detail { font-size:13px; color:var(--text-muted); margin-bottom:1px; }
-    .edu-cols { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
-    .edu-col-title { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:14px; padding-bottom:6px; border-bottom:1px solid var(--border); }
-    .aw-list { list-style:none; padding:0; }
-    .aw-item { display:flex; gap:12px; padding:6px 0; border-bottom:1px solid var(--border); font-size:14px; }
-    .aw-item:last-child { border-bottom:none; }
-    .aw-year { font-size:12px; color:var(--text-muted); min-width:38px; flex-shrink:0; padding-top:2px; }
-    .sk-group { margin-bottom:14px; }
-    .sk-group h4 { font-size:12px; text-transform:uppercase; letter-spacing:.07em; color:var(--text-muted); margin-bottom:8px; }
-    .sk-tags { display:flex; flex-wrap:wrap; gap:6px; }
-    .sk-tag { font-size:12px; padding:3px 10px; background:var(--bg-alt); border:1px solid var(--border); border-radius:12px; color:var(--text); }
-    footer { text-align:center; padding:20px; font-size:12px; color:var(--text-muted); border-top:1px solid var(--border); }
-    @media (max-width:680px) { .wrapper { flex-direction:column; gap:28px; } .sidebar { width:100%; position:static; } .pub-thumb { display:none; } .edu-cols { grid-template-columns:1fr; } }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .wrapper {
+      display: flex;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      gap: 48px;
+    }
+
+    .sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 40px;
+      align-self: flex-start;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      margin-bottom: 14px;
+      background: var(--bg-alt);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sidebar .name {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: normal;
+      margin-bottom: 4px;
+    }
+
+    .sidebar .pos,
+    .sidebar .aff {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .sidebar .tagline {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.4;
+      margin: 8px 4px 0;
+    }
+
+    .s-links {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+      margin: 18px 0;
+    }
+
+    .s-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .s-links a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .s-links i {
+      width: 14px;
+      text-align: center;
+    }
+
+    .s-nav {
+      text-align: left;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    .s-nav a {
+      display: block;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 3px 0;
+    }
+
+    .s-nav a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: normal;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 7px;
+      margin-bottom: 18px;
+    }
+
+    p {
+      margin-bottom: 12px;
+    }
+
+    .r-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .r-list li {
+      padding: 3px 0 3px 18px;
+      position: relative;
+      font-size: 15px;
+    }
+
+    .r-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+      top: 7px;
+    }
+
+    .pub-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .pub-item {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 22px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pub-item:last-child {
+      border-bottom: none;
+    }
+
+    .pub-thumb {
+      width: 110px;
+      height: 72px;
+      flex-shrink: 0;
+      border-radius: 4px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thumb-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      padding: 4px 8px;
+      border-radius: 3px;
+      color: #fff;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .pub-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pub-title {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    .pub-authors {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+      line-height: 1.5;
+    }
+
+    .pub-authors strong {
+      color: var(--text);
+    }
+
+    .pub-venue {
+      font-size: 13px;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+    }
+
+    .pub-venue strong {
+      font-style: normal;
+      color: var(--text);
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .pl {
+      font-size: 12px;
+      padding: 2px 8px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--accent);
+    }
+
+    .pl:hover {
+      background: var(--bg-alt);
+      text-decoration: none;
+    }
+
+    .pb {
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 3px;
+      background: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffc107;
+      font-style: italic;
+    }
+
+    @media (prefers-color-scheme:dark) {
+      .pb {
+        background: #2d2500;
+        color: #ffc107;
+        border-color: #5a4000;
+      }
+    }
+
+    .pub-sub {
+      font-size: 13px;
+      font-style: italic;
+      color: var(--text-muted);
+      margin: 6px 0 14px;
+    }
+
+    .edu-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .edu-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 18px;
+      align-items: flex-start;
+    }
+
+    .edu-logo {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.2;
+      overflow: hidden;
+    }
+
+    .edu-inst {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .edu-detail {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 1px;
+    }
+
+    .edu-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .edu-col-title {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .aw-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .aw-item {
+      display: flex;
+      gap: 12px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .aw-item:last-child {
+      border-bottom: none;
+    }
+
+    .aw-year {
+      font-size: 12px;
+      color: var(--text-muted);
+      min-width: 38px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .sk-group {
+      margin-bottom: 14px;
+    }
+
+    .sk-group h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .sk-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .sk-tag {
+      font-size: 12px;
+      padding: 3px 10px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width:680px) {
+      .wrapper {
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .sidebar {
+        width: 100%;
+        position: static;
+      }
+
+      .pub-thumb {
+        display: none;
+      }
+
+      .edu-cols {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
+
 <body>
-<script>
-/* ============================================================
-   ★★★  个人信息区  ★★★
-   ============================================================ */
+  <script>
+    /* ============================================================
+       ★★★  个人信息区  ★★★
+       ============================================================ */
 
-const ME = {
-  name:       "Chi Zhang",
-  position:   "Ph.D. Candidate in Chemistry",
-  affiliation:"California Institute of Technology",
-  major:      "Minor in Computing + Mathematical Sciences",
-  tagline:    "Understanding molecules, mechanisms, and the stories behind them.",
-  email:      "czhang@caltech.edu",
-  photo:      "Chi_profile.jpg",
-  scholar:    "https://scholar.google.com/citations?user=qUVUbukAAAAJ&hl=en",
-  linkedin:   "",
-  cv:         "",
+    const ME = {
+      name: "Chi Zhang",
+      position: "Ph.D. Candidate in Chemistry",
+      affiliation: "California Institute of Technology",
+      major: "Minor in Computing + Mathematical Sciences",
+      tagline: "Understanding molecules, mechanisms, and the stories behind them.",
+      email: "czhang8@caltech.edu",
+      photo: "Chi_profile.jpg",
+      scholar: "https://scholar.google.com/citations?user=qUVUbukAAAAJ&hl=en",
+      linkedin: "",
+      cv: "",
 
-  about: `
+      about: `
     I am a Ph.D. candidate in Chemistry at the
     <a href="https://www.caltech.edu" target="_blank">California Institute of Technology (Caltech)</a>,
     working in the group of Prof.
@@ -112,7 +491,8 @@ const ME = {
     My research uses quantum chemistry, molecular dynamics, periodic calculations,
     and data-driven analysis to understand chemical reactivity, catalytic mechanisms,
     molecular interactions, and materials interfaces, often in close partnership
-    with experimental groups.
+    with experimental groups. I am a recipient of the Marcus Center's
+    <strong>Tie-Hua Zhang and Su-Hua Li Graduate Student Fellowship</strong> (2026).
     <br><br>
     Before Caltech, I earned my B.Sc. in Chemistry <em>summa cum laude</em> from
     <a href="https://en.ustc.edu.cn" target="_blank">USTC</a>, where I received the
@@ -121,265 +501,307 @@ const ME = {
     chemistry, polymer upcycling, reaction mechanisms, and computational chemistry.
     <br><br>
     Beyond research, I enjoy communicating science and building academic communities.
-    I currently serve as President of Caltech C, organizing academic, cultural, and
+    I served as President of Caltech C (2025–26), organizing academic, cultural, and
     alumni events for the Chinese community at Caltech.
   `,
 
-  research: [
-    { bold:"Computational Mechanistic Chemistry:", text:"quantum-chemical studies of catalytic mechanisms, selectivity, and reactivity" },
-    { bold:"Molecular Simulation & Periodic Systems:", text:"MD and periodic calculations for molecular interactions, materials interfaces, and condensed-phase environments" },
-    { bold:"Organometallic & Small-Molecule Catalysis:", text:"transition-metal catalysis, C–H activation, cross-coupling, and small-molecule activation" },
-    { bold:"Data-Driven Chemistry:", text:"interpretable models for reaction prediction, catalyst design, and mechanistic analysis" },
-  ],
-};
+      research: [
+        {bold: "Computational Mechanistic Chemistry:", text: "quantum-chemical studies of catalytic mechanisms, selectivity, and reactivity"},
+        {bold: "Molecular Simulation & Periodic Systems:", text: "MD and periodic calculations for molecular interactions, materials interfaces, and condensed-phase environments"},
+        {bold: "Organometallic & Small-Molecule Catalysis:", text: "transition-metal catalysis, C–H activation, cross-coupling, and small-molecule activation"},
+        {bold: "Data-Driven Chemistry:", text: "interpretable models for reaction prediction, catalyst design, and mechanistic analysis"},
+      ],
+    };
 
-/* ============================================================
-   ★★★  论文列表  ★★★
-   status: "published" / "accepted" / "under review" / "under revision"
-   ============================================================ */
+    /* ============================================================
+       ★★★  论文列表  ★★★
+       status: "published" / "accepted" / "under review" / "under revision"
+       ============================================================ */
 
-const PUBS = [
-  {
-    journal: "Nature",
-    title:   "Biocatalytic Nitrene Transfer Enables Aziridination of Unactivated Alkenes for the Synthesis of Chiral Oxazolidinones",
-    authors: "",
-    venue:   "<strong>Nature</strong> — manuscript under revision",
-    doi:     "",
-    status:  "under revision",
-  },
-  {
-    journal: "NatComm",
-    title:   "Divergent Concerted and Stepwise Cycloadditions via Enantioselective Cross-conjugated Iminium-ion Catalysis",
-    authors: "Kocemba, I. R.†; Basabe Obregón, E.†; **Chi Zhang†**; Kaasik, M.; Houk, K. N.; Jørgensen, K. A.",
-    venue:   "<strong>Nature Communications</strong>",
-    doi:     "",
-    status:  "accepted",
-  },
-  {
-    journal: "JACS",
-    title:   "Engineering Enantiocomplementary Protoglobins for Stereoconvergent Construction of N-Alkylated α-Aminoketones",
-    authors: "Qin, Z.-Y.†; Li, Z.-Q.†; **Chi Zhang**; Heise, J. L.; Houk, K. N.; Goddard III, W. A.; Arnold, F. H.",
-    venue:   "<strong>J. Am. Chem. Soc.</strong> 2026, 148, 18, 18555–18561",
-    doi:     "https://doi.org/10.1021/jacs.5c17989",
-    status:  "published",
-  },
-  {
-    journal: "SciAdv",
-    title:   "Selective Cobalt and Nickel Separation by Bioacid-Mediated Electrowinning",
-    authors: "Li, T.; **Chi Zhang**; Zhou, H.; et al.; Goddard III, W. A.; Liu, Y.",
-    venue:   "<strong>Sci. Adv.</strong> 12, eaec7956 (2026)",
-    doi:     "https://doi.org/10.1126/sciadv.aec7956",
-    status:  "published",
-  },
-  {
-    journal: "JACS",
-    title:   "Unraveling the Dichotomy Exerted by Boron Reagents in Site-Selective Functionalization of C(sp²)– and C(sp³)–OMe Bonds",
-    authors: "Chen, P.-P.; Santiago, T. G.; Odena, C.; **Chi Zhang**; Martin, R.; Houk, K. N.",
-    venue:   "<strong>J. Am. Chem. Soc.</strong>, 2025, 147 (38), 34575–34588.",
-    doi:     "https://doi.org/10.1021/jacs.5c09306",
-    status:  "published",
-  },
-  {
-    journal: "Organomet",
-    title:   "A Change in C–H Activation Mechanism: Experimental and Computational Investigations of Rh-Catalyzed Disubstituted Benzene Functionalization",
-    authors: "Reid, C. W.†; **Chi Zhang†**; Baptiste, L. E.; Houk, K. N.; Goddard III, W. A.; Gunnoe, T. B.",
-    venue:   "<strong>Organometallics</strong>, 2025, 44 (21), 2579–2591.",
-    doi:     "https://doi.org/10.1021/acs.organomet.5c00379",
-    status:  "published",
-  },
-  {
-    journal: "ACSOmega",
-    title:   "Instantaneous Hydrolysis of Methyl Paraoxon Nerve Agent Simulant Is Catalyzed by Nontoxic Aminoguanidine Imines",
-    authors: "Darkwah, E. K.; Aryal, P.; **Chi Zhang**; Musgrave, C. B. I.; Goddard, W. A. I.; Reddy, V. P.",
-    venue:   "<strong>ACS Omega</strong>, 2025, 10 (12), 12294–12305.",
-    doi:     "https://doi.org/10.1021/acsomega.4c09946",
-    status:  "published",
-  },
-  {
-    journal: "ChemComm",
-    title:   "The Lewis Superacidic Aluminium Cation: [(NHC)Al(C₆F₅)₂]⁺",
-    authors: "Ju, S.; **Chi Zhang**; Tang, B.; Liu, L. L.; Stephan, D. W.; Wu, Y.",
-    venue:   "<strong>Chem. Commun.</strong>, 2024, 60 (6), 698–701.",
-    doi:     "https://doi.org/10.1039/D3CC05440C",
-    status:  "published",
-  },
-];
+    const PUBS = [
+      {
+        journal: "Nature",
+        title: "Chiral Oxazolidinones via Biocatalytic Aziridination of Unactivated Alkenes",
+        authors: "Li, Z.-Q.; Hanley, D.; Zhang, Y.; Xie, P.-P.; Wu, S. J.; Qin, Z.-Y.; **Chi Zhang**; Alfonzo, E.; Li, F.-Z.; Brinkman-Chen, S.; Liu, P.; Arnold, F. H.",
+        venue: "<strong>Nature</strong> 2026",
+        doi: "https://doi.org/10.1038/s41586-026-11169-0",
+        status: "published",
+      },
+      {
+        journal: "NatComm",
+        title: "Divergent Concerted and Stepwise Cycloadditions via Enantioselective Cross-Conjugated Iminium-Ion Catalysis",
+        authors: "Basabe Obregón, E.†; Kocemba, I. R.†; **Chi Zhang†**; Kaasik, M.; Cakiroglu, M.; Waser, P.; Chen, P.-P.; Houk, K. N.; Jørgensen, K. A.",
+        venue: "<strong>Nat. Commun.</strong> 2026, 17, 9324",
+        doi: "https://doi.org/10.1038/s41467-026-76222-y",   // TODO: 补上 Nat. Commun. 的 DOI
+        status: "published",
+      },
+      {
+        journal: "JACS",
+        title: "Engineering Enantiocomplementary Protoglobins for Stereoconvergent Construction of N-Alkylated α-Aminoketones",
+        authors: "Qin, Z.-Y.†; Li, Z.-Q.†; **Chi Zhang**; Heise, J. L.; Mao, R.; Wu, S. J.; Houk, K. N.; Goddard III, W. A.; Arnold, F. H.",
+        venue: "<strong>J. Am. Chem. Soc.</strong> 2026, 148 (18), 18555–18561",
+        doi: "https://doi.org/10.1021/jacs.5c17989",
+        status: "published",
+      },
+      {
+        journal: "SciAdv",
+        title: "Selective Cobalt and Nickel Separation by Bioacid-Mediated Electrowinning",
+        authors: "Li, T.; **Chi Zhang**; Zhou, H.; Lin, D.-Z.; et al.; Goddard III, W. A.; Liu, Y.",
+        venue: "<strong>Sci. Adv.</strong> 2026, 12 (10), eaec7956",
+        doi: "https://doi.org/10.1126/sciadv.aec7956",
+        status: "published",
+      },
+      {
+        journal: "JACS",
+        title: "Unraveling the Dichotomy Exerted by Boron Reagents in Site-Selective Functionalization of C(sp²)– and C(sp³)–OMe Bonds",
+        authors: "Chen, P.-P.; Santiago, T. G.; Odena, C.; **Chi Zhang**; Martin, R.; Houk, K. N.",
+        venue: "<strong>J. Am. Chem. Soc.</strong> 2025, 147 (38), 34575–34588",
+        doi: "https://doi.org/10.1021/jacs.5c09306",
+        status: "published",
+      },
+      {
+        journal: "Organomet",
+        title: "A Change in C–H Activation Mechanism: Experimental and Computational Investigations of Rh-Catalyzed Disubstituted Benzene Functionalization",
+        authors: "Reid, C. W.†; **Chi Zhang†**; Baptiste, L. E.; Houk, K. N.; Goddard III, W. A.; Gunnoe, T. B.",
+        venue: "<strong>Organometallics</strong> 2025, 44 (21), 2579–2591",
+        doi: "https://doi.org/10.1021/acs.organomet.5c00379",
+        status: "published",
+      },
+      {
+        journal: "ACSOmega",
+        title: "Instantaneous Hydrolysis of Methyl Paraoxon Nerve Agent Simulant Is Catalyzed by Nontoxic Aminoguanidine Imines",
+        authors: "Darkwah, E. K.; Aryal, P.; **Chi Zhang**; Musgrave III, C. B.; Goddard III, W. A.; Reddy, V. P.",
+        venue: "<strong>ACS Omega</strong> 2025, 10 (12), 12294–12305",
+        doi: "https://doi.org/10.1021/acsomega.4c09946",
+        status: "published",
+      },
+      {
+        journal: "ChemComm",
+        title: "The Lewis Superacidic Aluminium Cation: [(NHC)Al(C₆F₅)₂]⁺",
+        authors: "Ju, S.; **Chi Zhang**; Tang, B.; Liu, L. L.; Stephan, D. W.; Wu, Y.",
+        venue: "<strong>Chem. Commun.</strong> 2024, 60 (6), 698–701",
+        doi: "https://doi.org/10.1039/D3CC05440C",
+        status: "published",
+      },
+    ];
 
-/* ============================================================
-   ★★★  教育 & 科研经历  ★★★
-   ============================================================ */
+    /* 投稿中 / 修改中的稿件（单独列在已发表论文之后） */
+    const MANUSCRIPTS = [
+      {
+        journal: "JACS",
+        title: "Engineering Hemoprotein Nitrene Transferases for Asymmetric Aminative Semipinacol Rearrangement",
+        authors: "Li, Z.-Q.; Wu, S. J.†; **Chi Zhang†**; Qin, Z.-Y.; Domecillo, M.; Zhang, Z.; Zhang, Y.; Houk, K. N.; Goddard III, W. A.; Arnold, F. H.",
+        venue: "<strong>J. Am. Chem. Soc.</strong>",
+        doi: "",
+        status: "under review",
+      },
+      {
+        journal: "JMCA",
+        title: "Beyond the Static Site: Dynamic, Support-Coupled Single-Atom Catalysts from First-Principles Modelling to Operando Observables",
+        authors: "Das, T.†; **Chi Zhang†**; Liu, G.†; Hou, Q.†; Weng, S.-H.†; Goddard III, W. A.",
+        venue: "<strong>J. Mater. Chem. A</strong>",
+        doi: "",
+        status: "under revision",
+      },
+    ];
 
-const EDUCATION = [
-  // ── Education（左栏，倒序）──
-  { type:"edu", logo:"CIT", logoUrl:"Logo_caltech.png",
-    inst:"California Institute of Technology",
-    lines:[
-      "Ph.D. Candidate in Chemistry · Sept. 2023 – Expected Jun. 2029",
-      "M.Sc. in Chemistry · Sept. 2023 – Jun. 2025",
-      "Minor in Computing + Mathematical Sciences",
-      "Advisor: Prof. William A. Goddard III",
-    ]},
-  { type:"edu", logo:"USTC", logoUrl:"Logo_ustc.png",
-    inst:"University of Science and Technology of China",
-    lines:[
-      "B.Sc. in Chemistry, <em>summa cum laude</em> · Aug. 2019 – Jun. 2023",
-      "Advisor: Prof. Hanmin Huang",
-    ]},
+    /* ============================================================
+       ★★★  教育 & 科研经历  ★★★
+       ============================================================ */
 
-  // ── Research Experience（右栏，倒序）──
-  { type:"res", logo:"UCLA", logoUrl:"Logo_ucla.png",
-    inst:"University of California, Los Angeles",
-    lines:[
-      "Research Intern · Aug. – Sept. 2023",
-      "Advisor: Prof. K. N. Houk",
-    ]},
-  { type:"res", logo:"SUSTech", logoUrl:"Logo_sustech.png", logoScale:1.2,
-    inst:"Southern University of Science and Technology",
-    lines:[
-      "Visiting Student · Jun. – Aug. 2023",
-      "Advisor: Prof. Liu Leo Liu",
-    ]},
-  { type:"res", logo:"NU", logoUrl:"Logo_nu.png",
-    inst:"Northwestern University",
-    lines:[
-      "Research Intern · Jul. – Nov. 2022",
-      "Advisors: Prof. Tobin Marks & Prof. Yosi Kratish",
-      "Project: Polyurethane catalytic upcycling",
-    ]},
-  { type:"res", logo:"NU", logoUrl:"Logo_nu.png",
-    inst:"Northwestern University",
-    lines:[
-      "Online Research Training · Jun. – Aug. 2021",
-      "Advisor: Prof. Thomas Meade",
-      "Project: Zinc finger protein inhibitors",
-    ]},
-];
+    const EDUCATION = [
+      // ── Education（左栏，倒序）──
+      {
+        type: "edu", logo: "CIT", logoUrl: "Logo_caltech.png",
+        inst: "California Institute of Technology",
+        lines: [
+          "Ph.D. Candidate in Chemistry · Sept. 2023 – Expected Jun. 2028",
+          "M.Sc. in Chemistry · Sept. 2023 – Jun. 2025",
+          "Minor in Computing + Mathematical Sciences",
+          "Advisor: Prof. William A. Goddard III",
+        ]
+      },
+      {
+        type: "edu", logo: "USTC", logoUrl: "Logo_ustc.png",
+        inst: "University of Science and Technology of China",
+        lines: [
+          "B.Sc. in Chemistry, <em>summa cum laude</em> · Aug. 2019 – Jun. 2023",
+          "Advisor: Prof. Hanmin Huang",
+        ]
+      },
 
-/* ============================================================
-   ★★★  奖项列表  ★★★
-   ============================================================ */
+      // ── Research Experience（右栏，倒序）──
+      {
+        type: "res", logo: "UCLA", logoUrl: "Logo_ucla.png",
+        inst: "University of California, Los Angeles",
+        lines: [
+          "Research Intern · Jul. – Sept. 2023",
+          "Advisor: Prof. K. N. Houk",
+        ]
+      },
+      {
+        type: "res", logo: "SUSTech", logoUrl: "Logo_sustech.png", logoScale: 1.2,
+        inst: "Southern University of Science and Technology",
+        lines: [
+          "Visiting Student · Jun. – Aug. 2023",
+          "Advisor: Prof. Liu Leo Liu",
+        ]
+      },
+      {
+        type: "res", logo: "NU", logoUrl: "Logo_nu.png",
+        inst: "Northwestern University",
+        lines: [
+          "Research Intern · Jul. – Nov. 2022",
+          "Advisors: Prof. Tobin Marks & Prof. Yosi Kratish",
+          "Project: Polyurethane catalytic upcycling",
+        ]
+      },
+      {
+        type: "res", logo: "NU", logoUrl: "Logo_nu.png",
+        inst: "Northwestern University",
+        lines: [
+          "Online Research Training · Jun. – Aug. 2021",
+          "Advisor: Prof. Thomas Meade",
+          "Project: Zinc finger protein inhibitors",
+        ]
+      },
+    ];
 
-const AWARDS = [
-  { year:"2026", text:"<a href='https://scholarship.cesasc.org/' target='_blank'><strong>CESASC Scholarship</strong></a>" },
-  { year:"2023", text:"<a href='https://news.ustc.edu.cn/info/1047/82697.htm' target='_blank'><strong>Guo Moruo Scholarship</strong></a> — USTC's highest undergraduate honor" },
-  { year:"2022", text:"Huang Minglong Scholarship — awarded by SIOC" },
-  { year:"2021", text:"<strong>National Scholarship</strong> — ranked <strong>1 / 155</strong>, top 0.2% nationally" },
-  { year:"2020–21", text:"Endeavour Scholarship — awarded for exceptional academic progress" },
-  { year:"—",    text:"Outstanding Student-Athlete — top 0.3% in comprehensive athletic evaluation" },
-];
+    /* ============================================================
+       ★★★  奖项列表  ★★★
+       ============================================================ */
 
-/* ============================================================
-   ★★★  技能列表  ★★★
-   ============================================================ */
+    const AWARDS = [
+      {year: "2026", text: "<strong>Tie-Hua Zhang and Su-Hua Li Graduate Student Fellowship</strong> — Marcus Center for Theoretical Chemistry, Caltech"},
+      {year: "2026", text: "<a href='https://scholarship.cesasc.org/' target='_blank'><strong>CESASC Scholarship</strong></a>"},
+      {year: "2022", text: "<a href='https://news.ustc.edu.cn/info/1047/82697.htm' target='_blank'><strong>Guo Moruo Scholarship</strong></a> — USTC's highest undergraduate honor"},
+      {year: "2022", text: "Huang Minglong Scholarship — awarded by SIOC"},
+      {year: "2022", text: "Athletics Excellence Scholarship — top 0.3% in comprehensive athletic evaluation, USTC"},
+      {year: "2021", text: "<strong>National Scholarship</strong> — ranked <strong>1 / 155</strong>, top 0.2% nationally"},
+      {year: "2020–21", text: "Endeavour Scholarship — awarded for exceptional academic progress"},
+    ];
 
-const SKILLS = [
-  {
-    category: "Computation & Data Analysis",
-    tags: ["Python", "C", "Gaussian", "Multiwfn", "Chemcraft", "CCDC Package", "Origin", "MestReNova"],
-  },
-  {
-    category: "Experimental Background",
-    tags: ["Glovebox", "Schlenk Technique", "Cannula Transfer", "Photocatalysis", "Column Chromatography"],
-  },
-  {
-    category: "Characterization",
-    tags: ["NMR", "GC / GC-MS", "HPLC", "IR", "UV-Vis", "TGA", "ICP", "XRD"],
-  },
-];
+    /* ============================================================
+       ★★★  技能列表  ★★★
+       ============================================================ */
 
-/* ============================================================
-   ★★★  服务 & 其他  ★★★
-   ============================================================ */
+    const SKILLS = [
+      {
+        category: "Quantum Chemistry & Molecular Simulation",
+        tags: ["Gaussian", "ORCA", "Jaguar", "VASP", "GROMACS", "AMBER", "Schrödinger Maestro", "Multiwfn", "VMD", "PyMOL", "CYLview"],
+      },
+      {
+        category: "Machine Learning & Cheminformatics",
+        tags: ["Python", "NumPy / pandas", "PyTorch", "PyTorch Geometric", "scikit-learn", "RDKit", "GNN / MPNN", "Active Learning", "Bayesian Optimization", "Bash / Linux", "Git", "SLURM / HPC"],
+      },
+      {
+        category: "Experimental",
+        tags: ["Glovebox", "Schlenk Technique", "Column Chromatography", "NMR", "GC / GC-MS", "HPLC", "PCR", "Bacterial Culture"],
+      },
+    ];
 
-const SERVICES = `
+    /* ============================================================
+       ★★★  服务 & 其他  ★★★
+       ============================================================ */
+
+    const SERVICES = `
   <p><strong>Peer Review:</strong> Ad hoc reviewer for <em>ACS Applied Materials &amp; Interfaces</em> and <em>Tetrahedron</em>.</p>
   <p><strong>Teaching:</strong></p>
   <p style="margin-left:1.2em; margin-top:-8px;">Teaching Assistant, General Chemistry A, USTC, Fall 2021 — lectured on selected topics, organized weekly discussions, graded assignments and exams.</p>
   <p style="margin-left:1.2em;">Teaching Assistant, Chem 3x: Experimental Methods in Solar Energy Conversion, Caltech, Fall 2023 – Spring 2024 — lectured weekly introduction sections with chalktalk; supervised experiments; graded assignments and reports.</p>
-  <p><strong>Community Leadership:</strong> President, Caltech Chinese Association (Caltech C), Aug. 2025 – Present.</p>
+  <p><strong>Community Leadership:</strong> President, Caltech Chinese Association (Caltech C), Aug. 2025 – Aug. 2026.</p>
   <p style="margin-left:1.2em; margin-top:-8px;">Organized academic, cultural, and alumni events, including Caltech C's 40th Anniversary Alumni Reunion and the Caltech C Forum series.</p>
 `;
 
-/* ============================================================
-   以下是渲染代码，不需要修改
-   ============================================================ */
+    /* ============================================================
+       以下是渲染代码，不需要修改
+       ============================================================ */
 
-const JOURNAL_COLORS = {
-  JACS:      "#1a3a6b",
-  Organomet: "#2B5BA8",
-  ACSOmega:  "#5B8DD9",
-  ChemComm:  "#C8102E",
-  Nature:    "#000000",
-  NatChem:   "#3953A4",
-  NatComm:   "#E5652B",
-  NatCatal:  "#7B4F9E",
-  NatSynth:  "#2E8B57",
-  Science:   "#00687A",
-  SciAdv:    "#2E9EB0",
-};
+    const JOURNAL_COLORS = {
+      JACS: "#1a3a6b",
+      Organomet: "#2B5BA8",
+      ACSOmega: "#5B8DD9",
+      ChemComm: "#C8102E",
+      JMCA: "#8B1A1A",
+      Nature: "#000000",
+      NatChem: "#3953A4",
+      NatComm: "#E5652B",
+      NatCatal: "#7B4F9E",
+      NatSynth: "#2E8B57",
+      Science: "#00687A",
+      SciAdv: "#2E9EB0",
+    };
 
-function authorHTML(str) {
-  if (!str) return "";
-  return str
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/†/g, "†");
-}
+    function authorHTML(str) {
+      if (!str) return "";
+      return str
+        .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+        .replace(/†/g, "†");
+    }
 
-function buildPage() {
-  const avatarSrc = ME.photo || `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150"><rect width="150" height="150" rx="75" fill="%23d0e8f8"/><text x="75" y="95" font-size="48" text-anchor="middle" fill="%232a5c8a" font-family="Georgia">${ME.name[0]}</text></svg>`;
-  document.getElementById("avatar").src = avatarSrc;
-  document.getElementById("sb-name").textContent = ME.name;
-  document.getElementById("sb-pos").textContent = ME.position;
-  document.getElementById("sb-aff").textContent = ME.affiliation;
-  document.getElementById("sb-major").innerHTML = ME.major;
-  document.getElementById("sb-tagline").textContent = ME.tagline;
-  document.title = `${ME.name} | Caltech`;
+    function pubItemHTML(p) {
+      const color = JOURNAL_COLORS[p.journal] || "#888";
+      const statusHTML = p.status === "published"
+        ? (p.doi ? `<a class="pl" href="${p.doi}" target="_blank">Paper</a>` : "")
+        : p.status === "accepted"
+          ? `<span class="pb" style="background:#d4edda;color:#155724;border-color:#c3e6cb;">Accepted</span>`
+          : `<span class="pb">${p.status === "under review" ? "Under Review" : "Manuscript Under Revision"}</span>`;
+      const authorsHTML = authorHTML(p.authors);
+      return `
+    <li class="pub-item">
+      <div class="pub-thumb"><span class="thumb-badge" style="background:${color}">${p.journal}</span></div>
+      <div class="pub-body">
+        <div class="pub-title">${p.title}</div>
+        ${authorsHTML ? `<div class="pub-authors">${authorsHTML}</div>` : ""}
+        <div class="pub-venue">${p.venue}</div>
+        <div class="pub-links">${statusHTML}</div>
+      </div>
+    </li>`;
+    }
 
-  const links = document.getElementById("sb-links");
-  if (ME.scholar)  links.innerHTML += `<a href="${ME.scholar}" target="_blank"><i class="fas fa-graduation-cap"></i>Google Scholar</a>`;
-  links.innerHTML += `<a href="mailto:${ME.email}"><i class="fas fa-envelope"></i>Email: ${ME.email}</a>`;
-  if (ME.linkedin) links.innerHTML += `<a href="${ME.linkedin}" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>`;
-  if (ME.cv)       links.innerHTML += `<a href="${ME.cv}" target="_blank"><i class="fas fa-file-pdf"></i>CV</a>`;
+    function buildPage() {
+      const avatarSrc = ME.photo || `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150"><rect width="150" height="150" rx="75" fill="%23d0e8f8"/><text x="75" y="95" font-size="48" text-anchor="middle" fill="%232a5c8a" font-family="Georgia">${ME.name[0]}</text></svg>`;
+      document.getElementById("avatar").src = avatarSrc;
+      document.getElementById("sb-name").textContent = ME.name;
+      document.getElementById("sb-pos").textContent = ME.position;
+      document.getElementById("sb-aff").textContent = ME.affiliation;
+      document.getElementById("sb-major").innerHTML = ME.major;
+      document.getElementById("sb-tagline").textContent = ME.tagline;
+      document.title = `${ME.name} | Caltech`;
 
-  document.getElementById("about-text").innerHTML = ME.about;
+      const links = document.getElementById("sb-links");
+      if (ME.scholar) links.innerHTML += `<a href="${ME.scholar}" target="_blank"><i class="fas fa-graduation-cap"></i>Google Scholar</a>`;
+      links.innerHTML += `<a href="mailto:${ME.email}"><i class="fas fa-envelope"></i>Email: ${ME.email}</a>`;
+      if (ME.linkedin) links.innerHTML += `<a href="${ME.linkedin}" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>`;
+      if (ME.cv) links.innerHTML += `<a href="${ME.cv}" target="_blank"><i class="fas fa-file-pdf"></i>CV</a>`;
 
-  const rl = document.getElementById("research-list");
-  ME.research.forEach(r => {
-    const li = document.createElement("li");
-    li.innerHTML = `<strong>${r.bold}</strong> ${r.text}`;
-    rl.appendChild(li);
-  });
+      document.getElementById("about-text").innerHTML = ME.about;
 
-  const pl = document.getElementById("pub-list");
-  PUBS.forEach(p => {
-    const color = JOURNAL_COLORS[p.journal] || "#888";
-    const statusHTML = p.status === "published"
-      ? (p.doi ? `<a class="pl" href="${p.doi}" target="_blank">Paper</a>` : "")
-      : p.status === "accepted"
-      ? `<span class="pb" style="background:#d4edda;color:#155724;border-color:#c3e6cb;">Accepted</span>`
-      : `<span class="pb">${p.status === "under review" ? "Under Review" : "Manuscript Under Revision"}</span>`;
-    const authorsHTML = authorHTML(p.authors);
-    pl.innerHTML += `
-      <li class="pub-item">
-        <div class="pub-thumb"><span class="thumb-badge" style="background:${color}">${p.journal}</span></div>
-        <div class="pub-body">
-          <div class="pub-title">${p.title}</div>
-          ${authorsHTML ? `<div class="pub-authors">${authorsHTML}</div>` : ""}
-          <div class="pub-venue">${p.venue}</div>
-          <div class="pub-links">${statusHTML}</div>
-        </div>
-      </li>`;
-  });
+      const rl = document.getElementById("research-list");
+      ME.research.forEach(r => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${r.bold}</strong> ${r.text}`;
+        rl.appendChild(li);
+      });
 
-  const el_edu = document.getElementById("edu-list-edu");
-  const el_res = document.getElementById("edu-list-res");
-  EDUCATION.forEach(e => {
-    const el = e.type === "edu" ? el_edu : el_res;
-    const scale = e.logoScale ? `transform:scale(${e.logoScale});` : "";
-    const logoHTML = e.logoUrl
-      ? `<img src="${e.logoUrl}" style="width:38px;height:38px;object-fit:contain;border-radius:50%;${scale}" />`
-      : e.logo;
-    el.innerHTML += `
+      const pl = document.getElementById("pub-list");
+      PUBS.forEach(p => {pl.innerHTML += pubItemHTML(p);});
+
+      const ml = document.getElementById("ms-list");
+      if (MANUSCRIPTS.length) {
+        document.getElementById("ms-head").style.display = "";
+        MANUSCRIPTS.forEach(p => {ml.innerHTML += pubItemHTML(p);});
+      }
+
+      const el_edu = document.getElementById("edu-list-edu");
+      const el_res = document.getElementById("edu-list-res");
+      EDUCATION.forEach(e => {
+        const el = e.type === "edu" ? el_edu : el_res;
+        const scale = e.logoScale ? `transform:scale(${e.logoScale});` : "";
+        const logoHTML = e.logoUrl
+          ? `<img src="${e.logoUrl}" style="width:38px;height:38px;object-fit:contain;border-radius:50%;${scale}" />`
+          : e.logo;
+        el.innerHTML += `
       <li class="edu-item">
         <div class="edu-logo">${logoHTML}</div>
         <div>
@@ -387,106 +809,109 @@ function buildPage() {
           ${e.lines.map(l => `<div class="edu-detail">${l}</div>`).join("")}
         </div>
       </li>`;
-  });
+      });
 
-  const al = document.getElementById("award-list");
-  AWARDS.forEach(a => {
-    al.innerHTML += `<li class="aw-item"><span class="aw-year">${a.year}</span><span>${a.text}</span></li>`;
-  });
+      const al = document.getElementById("award-list");
+      AWARDS.forEach(a => {
+        al.innerHTML += `<li class="aw-item"><span class="aw-year">${a.year}</span><span>${a.text}</span></li>`;
+      });
 
-  const sl = document.getElementById("skill-list");
-  SKILLS.forEach(s => {
-    sl.innerHTML += `
+      const sl = document.getElementById("skill-list");
+      SKILLS.forEach(s => {
+        sl.innerHTML += `
       <div class="sk-group">
         <h4>${s.category}</h4>
         <div class="sk-tags">${s.tags.map(t => `<span class="sk-tag">${t}</span>`).join("")}</div>
       </div>`;
-  });
+      });
 
-  document.getElementById("services-text").innerHTML = SERVICES;
+      document.getElementById("services-text").innerHTML = SERVICES;
 
-  // Clustrmaps
-  const s = document.createElement("script");
-  s.type = "text/javascript";
-  s.src = "//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=rqZ62Ag64qHPpJTkKMOXDdF3MA5vfZfPdjuMOtonGlg&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=ffffff";
-  document.getElementById("clustrmaps-container").appendChild(s);
-}
+      // Clustrmaps
+      const s = document.createElement("script");
+      s.type = "text/javascript";
+      s.src = "//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=tt&d=rqZ62Ag64qHPpJTkKMOXDdF3MA5vfZfPdjuMOtonGlg&co=2d78ad&cmo=3acc3a&cmn=ff5353&ct=ffffff";
+      document.getElementById("clustrmaps-container").appendChild(s);
+    }
 
-document.addEventListener("DOMContentLoaded", buildPage);
-</script>
+    document.addEventListener("DOMContentLoaded", buildPage);
+  </script>
 
-<div class="wrapper">
-  <aside class="sidebar">
-    <img id="avatar" class="avatar" alt="avatar" />
-    <div class="name" id="sb-name"></div>
-    <div class="tagline" id="sb-tagline"></div>
-    <div class="pos"  id="sb-pos"></div>
-    <div class="aff"  id="sb-aff"></div>
-    <div class="pos"  id="sb-major"></div>
-    <div class="s-links" id="sb-links"></div>
-    <nav class="s-nav">
-      <a href="#about">About Me</a>
-      <a href="#research">Research</a>
-      <a href="#publications">Publications</a>
-      <a href="#education">Education</a>
-      <a href="#awards">Awards</a>
-      <a href="#skills">Technical Skills</a>
-      <a href="#service">Service</a>
-      <a href="life.html" style="margin-top:8px; font-size:12px;">· · · Beyond Research →</a>
-    </nav>
-  </aside>
+  <div class="wrapper">
+    <aside class="sidebar">
+      <img id="avatar" class="avatar" alt="avatar" />
+      <div class="name" id="sb-name"></div>
+      <div class="tagline" id="sb-tagline"></div>
+      <div class="pos" id="sb-pos"></div>
+      <div class="aff" id="sb-aff"></div>
+      <div class="pos" id="sb-major"></div>
+      <div class="s-links" id="sb-links"></div>
+      <nav class="s-nav">
+        <a href="#about">About Me</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#education">Education</a>
+        <a href="#awards">Awards</a>
+        <a href="#skills">Technical Skills</a>
+        <a href="#service">Service</a>
+        <a href="life.html" style="margin-top:8px; font-size:12px;">· · · Beyond Research →</a>
+      </nav>
+    </aside>
 
-  <main class="main">
-    <section id="about">
-      <h2>About Me</h2>
-      <div id="about-text"></div>
-    </section>
+    <main class="main">
+      <section id="about">
+        <h2>About Me</h2>
+        <div id="about-text"></div>
+      </section>
 
-    <section id="research">
-      <h2>Research Interests</h2>
-      <ul class="r-list" id="research-list"></ul>
-    </section>
+      <section id="research">
+        <h2>Research Interests</h2>
+        <ul class="r-list" id="research-list"></ul>
+      </section>
 
-    <section id="publications">
-      <h2>Publications &amp; Preprints</h2>
-      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">† co-first author</p>
-      <ul class="pub-list" id="pub-list"></ul>
-    </section>
+      <section id="publications">
+        <h2>Publications &amp; Preprints</h2>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">† co-first author</p>
+        <ul class="pub-list" id="pub-list"></ul>
+        <div class="pub-sub" id="ms-head" style="display:none;">Manuscripts under review / revision</div>
+        <ul class="pub-list" id="ms-list"></ul>
+      </section>
 
-    <section id="education">
-      <h2>Education &amp; Research Experience</h2>
-      <div class="edu-cols">
-        <div>
-          <div class="edu-col-title">Education</div>
-          <ul class="edu-list" id="edu-list-edu"></ul>
+      <section id="education">
+        <h2>Education &amp; Research Experience</h2>
+        <div class="edu-cols">
+          <div>
+            <div class="edu-col-title">Education</div>
+            <ul class="edu-list" id="edu-list-edu"></ul>
+          </div>
+          <div>
+            <div class="edu-col-title">Research Experience</div>
+            <ul class="edu-list" id="edu-list-res"></ul>
+          </div>
         </div>
-        <div>
-          <div class="edu-col-title">Research Experience</div>
-          <ul class="edu-list" id="edu-list-res"></ul>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="awards">
-      <h2>Selected Awards</h2>
-      <ul class="aw-list" id="award-list"></ul>
-    </section>
+      <section id="awards">
+        <h2>Selected Awards</h2>
+        <ul class="aw-list" id="award-list"></ul>
+      </section>
 
-    <section id="skills">
-      <h2>Technical Skills</h2>
-      <div id="skill-list"></div>
-    </section>
+      <section id="skills">
+        <h2>Technical Skills</h2>
+        <div id="skill-list"></div>
+      </section>
 
-    <section id="service">
-      <h2>Service</h2>
-      <div id="services-text"></div>
-    </section>
-  </main>
-</div>
+      <section id="service">
+        <h2>Service</h2>
+        <div id="services-text"></div>
+      </section>
+    </main>
+  </div>
 
-<footer>
-  <div id="clustrmaps-container" style="margin-bottom:16px;"></div>
-  Powered by <a href="https://github.com/yaoyao-liu/minimal-light" target="_blank">Minimal Light</a> theme.
-</footer>
+  <footer>
+    <div id="clustrmaps-container" style="margin-bottom:16px;"></div>
+    Powered by <a href="https://github.com/yaoyao-liu/minimal-light" target="_blank">Minimal Light</a> theme.
+  </footer>
 </body>
+
 </html>
