@@ -433,6 +433,31 @@
       color: var(--text);
     }
 
+    .sw-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sw-item {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .sw-item:last-child {
+      border-bottom: none;
+    }
+
+    .sw-name {
+      font-weight: 600;
+    }
+
+    .sw-desc {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -473,11 +498,12 @@
       name: "Chi Zhang",
       position: "Ph.D. Candidate in Chemistry",
       affiliation: "California Institute of Technology",
-      major: "Minor in Computing + Mathematical Sciences",
+      major: "Minor in Information and Data Science",
       tagline: "Understanding molecules, mechanisms, and the stories behind them.",
       email: "czhang8@caltech.edu",
       photo: "Chi_profile.jpg",
       scholar: "https://scholar.google.com/citations?user=qUVUbukAAAAJ&hl=en",
+      github: "https://github.com/czhang8-caltech",
       linkedin: "",
       cv: "",
 
@@ -491,7 +517,9 @@
     My research uses quantum chemistry, molecular dynamics, periodic calculations,
     and data-driven analysis to understand chemical reactivity, catalytic mechanisms,
     molecular interactions, and materials interfaces, often in close partnership
-    with experimental groups. I am a recipient of the Marcus Center's
+    with experimental groups. I also build open-source scientific software, including
+    <a href="https://github.com/czhang8-caltech/DFTroid" target="_blank">DFTroid</a>,
+    a Python toolkit for automating Gaussian workflows. I am a recipient of the Marcus Center's
     <strong>Tie-Hua Zhang and Su-Hua Li Graduate Student Fellowship</strong> (2026).
     <br><br>
     Before Caltech, I earned my B.Sc. in Chemistry <em>summa cum laude</em> from
@@ -508,6 +536,7 @@
       research: [
         {bold: "Computational Mechanistic Chemistry:", text: "quantum-chemical studies of catalytic mechanisms, selectivity, and reactivity"},
         {bold: "Molecular Simulation & Periodic Systems:", text: "MD and periodic calculations for molecular interactions, materials interfaces, and condensed-phase environments"},
+        {bold: "Protein–Ligand Modeling & Biocatalysis:", text: "docking and MD of protein–ligand complexes, from orphan GPCRs to engineered enzymes, for structure-based design"},
         {bold: "Organometallic & Small-Molecule Catalysis:", text: "transition-metal catalysis, C–H activation, cross-coupling, and small-molecule activation"},
         {bold: "Data-Driven Chemistry:", text: "interpretable models for reaction prediction, catalyst design, and mechanistic analysis"},
       ],
@@ -515,7 +544,8 @@
 
     /* ============================================================
        ★★★  论文列表  ★★★
-       status: "published" / "accepted" / "under review" / "under revision"
+       status: "published" / "accepted" / "submitted" / "under review" / "under revision"
+       作者字符串中：** ** 加粗；† 共同一作；* 计算部分主要作者
        ============================================================ */
 
     const PUBS = [
@@ -530,15 +560,15 @@
       {
         journal: "NatComm",
         title: "Divergent Concerted and Stepwise Cycloadditions via Enantioselective Cross-Conjugated Iminium-Ion Catalysis",
-        authors: "Basabe Obregón, E.†; Kocemba, I. R.†; **Chi Zhang†**; Kaasik, M.; Cakiroglu, M.; Waser, P.; Chen, P.-P.; Houk, K. N.; Jørgensen, K. A.",
+        authors: "Basabe Obregón, E.†; Kocemba, I. R.†; **Chi Zhang†***; Kaasik, M.; Cakiroglu, M.; Waser, P.; Chen, P.-P.; Houk, K. N.; Jørgensen, K. A.",
         venue: "<strong>Nat. Commun.</strong> 2026, 17, 9324",
-        doi: "https://doi.org/10.1038/s41467-026-76222-y",   // TODO: 补上 Nat. Commun. 的 DOI
+        doi: "https://doi.org/10.1038/s41467-026-76222-y",
         status: "published",
       },
       {
         journal: "JACS",
         title: "Engineering Enantiocomplementary Protoglobins for Stereoconvergent Construction of N-Alkylated α-Aminoketones",
-        authors: "Qin, Z.-Y.†; Li, Z.-Q.†; **Chi Zhang**; Heise, J. L.; Mao, R.; Wu, S. J.; Houk, K. N.; Goddard III, W. A.; Arnold, F. H.",
+        authors: "Qin, Z.-Y.†; Li, Z.-Q.†; **Chi Zhang***; Heise, J. L.; Mao, R.; Wu, S. J.; Houk, K. N.; Goddard III, W. A.; Arnold, F. H.",
         venue: "<strong>J. Am. Chem. Soc.</strong> 2026, 148 (18), 18555–18561",
         doi: "https://doi.org/10.1021/jacs.5c17989",
         status: "published",
@@ -546,7 +576,7 @@
       {
         journal: "SciAdv",
         title: "Selective Cobalt and Nickel Separation by Bioacid-Mediated Electrowinning",
-        authors: "Li, T.; **Chi Zhang**; Zhou, H.; Lin, D.-Z.; et al.; Goddard III, W. A.; Liu, Y.",
+        authors: "Li, T.; **Chi Zhang***; Zhou, H.; Lin, D.-Z.; et al.; Goddard III, W. A.; Liu, Y.",
         venue: "<strong>Sci. Adv.</strong> 2026, 12 (10), eaec7956",
         doi: "https://doi.org/10.1126/sciadv.aec7956",
         status: "published",
@@ -562,7 +592,7 @@
       {
         journal: "Organomet",
         title: "A Change in C–H Activation Mechanism: Experimental and Computational Investigations of Rh-Catalyzed Disubstituted Benzene Functionalization",
-        authors: "Reid, C. W.†; **Chi Zhang†**; Baptiste, L. E.; Houk, K. N.; Goddard III, W. A.; Gunnoe, T. B.",
+        authors: "Reid, C. W.†; **Chi Zhang†***; Baptiste, L. E.; Houk, K. N.; Goddard III, W. A.; Gunnoe, T. B.",
         venue: "<strong>Organometallics</strong> 2025, 44 (21), 2579–2591",
         doi: "https://doi.org/10.1021/acs.organomet.5c00379",
         status: "published",
@@ -570,7 +600,7 @@
       {
         journal: "ACSOmega",
         title: "Instantaneous Hydrolysis of Methyl Paraoxon Nerve Agent Simulant Is Catalyzed by Nontoxic Aminoguanidine Imines",
-        authors: "Darkwah, E. K.; Aryal, P.; **Chi Zhang**; Musgrave III, C. B.; Goddard III, W. A.; Reddy, V. P.",
+        authors: "Darkwah, E. K.; Aryal, P.; **Chi Zhang***; Musgrave III, C. B.; Goddard III, W. A.; Reddy, V. P.",
         venue: "<strong>ACS Omega</strong> 2025, 10 (12), 12294–12305",
         doi: "https://doi.org/10.1021/acsomega.4c09946",
         status: "published",
@@ -578,7 +608,7 @@
       {
         journal: "ChemComm",
         title: "The Lewis Superacidic Aluminium Cation: [(NHC)Al(C₆F₅)₂]⁺",
-        authors: "Ju, S.; **Chi Zhang**; Tang, B.; Liu, L. L.; Stephan, D. W.; Wu, Y.",
+        authors: "Ju, S.; **Chi Zhang***; Tang, B.; Liu, L. L.; Stephan, D. W.; Wu, Y.",
         venue: "<strong>Chem. Commun.</strong> 2024, 60 (6), 698–701",
         doi: "https://doi.org/10.1039/D3CC05440C",
         status: "published",
@@ -588,9 +618,17 @@
     /* 投稿中 / 修改中的稿件（单独列在已发表论文之后） */
     const MANUSCRIPTS = [
       {
+        journal: "COPHYS",
+        title: "Orphan GPCRs: Structure Modeling towards Deorphanization",
+        authors: "**Chi Zhang†**; Liu, G.†; Xu, Y. C.†; Hou, Q.†; Pachter, R.†; Kim, S.-K.†; Goddard III, W. A.",
+        venue: "<strong>Curr. Opin. Physiol.</strong>",
+        doi: "",
+        status: "submitted",
+      },
+      {
         journal: "JACS",
         title: "Engineering Hemoprotein Nitrene Transferases for Asymmetric Aminative Semipinacol Rearrangement",
-        authors: "Li, Z.-Q.; Wu, S. J.†; **Chi Zhang†**; Qin, Z.-Y.; Domecillo, M.; Zhang, Z.; Zhang, Y.; Houk, K. N.; Goddard III, W. A.; Arnold, F. H.",
+        authors: "Li, Z.-Q.; Wu, S. J.†; **Chi Zhang†***; Qin, Z.-Y.; Domecillo, M.; Zhang, Z.; Zhang, Y.; Houk, K. N.; Goddard III, W. A.; Arnold, F. H.",
         venue: "<strong>J. Am. Chem. Soc.</strong>",
         doi: "",
         status: "under review",
@@ -617,7 +655,7 @@
         lines: [
           "Ph.D. Candidate in Chemistry · Sept. 2023 – Expected Jun. 2028",
           "M.Sc. in Chemistry · Sept. 2023 – Jun. 2025",
-          "Minor in Computing + Mathematical Sciences",
+          "Minor in Information and Data Science (IDS), Computing + Mathematical Sciences",
           "Advisor: Prof. William A. Goddard III",
         ]
       },
@@ -631,6 +669,15 @@
       },
 
       // ── Research Experience（右栏，倒序）──
+      {
+        type: "res", logo: "AI4CS", logoUrl: "Logo_caltech.png",
+        inst: "AI for Chemical Sciences Bootcamp, Caltech",
+        lines: [
+          "Participant · Aug. 2026",
+          "Molecular ML: GNNs, active learning, Bayesian optimization",
+          "Project: OpenADMET hackathon (ADMET prediction for ~5,300 compounds)",
+        ]
+      },
       {
         type: "res", logo: "UCLA", logoUrl: "Logo_ucla.png",
         inst: "University of California, Los Angeles",
@@ -654,6 +701,15 @@
           "Research Intern · Jul. – Nov. 2022",
           "Advisors: Prof. Tobin Marks & Prof. Yosi Kratish",
           "Project: Polyurethane catalytic upcycling",
+        ]
+      },
+      {
+        type: "res", logo: "USTC", logoUrl: "Logo_ustc.png",
+        inst: "University of Science and Technology of China",
+        lines: [
+          "Undergraduate Researcher · Aug. 2020 – May 2022",
+          "Advisor: Prof. Hanmin Huang",
+          "Projects: Recyclable chiral salen polymer catalysts; Ni-catalyzed olefin difunctionalization",
         ]
       },
       {
@@ -682,17 +738,29 @@
     ];
 
     /* ============================================================
+       ★★★  开源软件  ★★★
+       ============================================================ */
+
+    const SOFTWARE = [
+      {
+        name: "DFTroid",
+        url: "https://github.com/czhang8-caltech/DFTroid",
+        desc: "Open-source Python CLI toolkit for Gaussian workflows — job-status parsing, geometry extraction, thermochemical aggregation, and automated reporting.",
+      },
+    ];
+
+    /* ============================================================
        ★★★  技能列表  ★★★
        ============================================================ */
 
     const SKILLS = [
       {
         category: "Quantum Chemistry & Molecular Simulation",
-        tags: ["Gaussian", "ORCA", "Jaguar", "VASP", "GROMACS", "AMBER", "Schrödinger Maestro", "Multiwfn", "VMD", "PyMOL", "CYLview"],
+        tags: ["Gaussian", "ORCA", "Jaguar", "VASP", "GROMACS", "AMBER", "Schrödinger Glide / Maestro", "Multiwfn", "VMD", "PyMOL", "CYLview"],
       },
       {
         category: "Machine Learning & Cheminformatics",
-        tags: ["Python", "NumPy / pandas", "PyTorch", "PyTorch Geometric", "scikit-learn", "RDKit", "GNN / MPNN", "Active Learning", "Bayesian Optimization", "Bash / Linux", "Git", "SLURM / HPC"],
+        tags: ["Python", "C", "NumPy / pandas", "PyTorch", "PyTorch Geometric", "scikit-learn", "RDKit", "GNN / MPNN", "Active Learning", "Bayesian Optimization", "Model Interpretability", "ADMET Prediction", "Molecular Docking", "Bash / Linux", "Git", "SLURM / HPC"],
       },
       {
         category: "Experimental",
@@ -723,6 +791,7 @@
       ACSOmega: "#5B8DD9",
       ChemComm: "#C8102E",
       JMCA: "#8B1A1A",
+      COPHYS: "#D97706",
       Nature: "#000000",
       NatChem: "#3953A4",
       NatComm: "#E5652B",
@@ -730,6 +799,12 @@
       NatSynth: "#2E8B57",
       Science: "#00687A",
       SciAdv: "#2E9EB0",
+    };
+
+    const STATUS_LABELS = {
+      "submitted": "Submitted",
+      "under review": "Under Review",
+      "under revision": "Manuscript Under Revision",
     };
 
     function authorHTML(str) {
@@ -745,7 +820,7 @@
         ? (p.doi ? `<a class="pl" href="${p.doi}" target="_blank">Paper</a>` : "")
         : p.status === "accepted"
           ? `<span class="pb" style="background:#d4edda;color:#155724;border-color:#c3e6cb;">Accepted</span>`
-          : `<span class="pb">${p.status === "under review" ? "Under Review" : "Manuscript Under Revision"}</span>`;
+          : `<span class="pb">${STATUS_LABELS[p.status] || p.status}</span>`;
       const authorsHTML = authorHTML(p.authors);
       return `
     <li class="pub-item">
@@ -771,6 +846,7 @@
 
       const links = document.getElementById("sb-links");
       if (ME.scholar) links.innerHTML += `<a href="${ME.scholar}" target="_blank"><i class="fas fa-graduation-cap"></i>Google Scholar</a>`;
+      if (ME.github) links.innerHTML += `<a href="${ME.github}" target="_blank"><i class="fab fa-github"></i>GitHub</a>`;
       links.innerHTML += `<a href="mailto:${ME.email}"><i class="fas fa-envelope"></i>Email: ${ME.email}</a>`;
       if (ME.linkedin) links.innerHTML += `<a href="${ME.linkedin}" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>`;
       if (ME.cv) links.innerHTML += `<a href="${ME.cv}" target="_blank"><i class="fas fa-file-pdf"></i>CV</a>`;
@@ -816,6 +892,18 @@
         al.innerHTML += `<li class="aw-item"><span class="aw-year">${a.year}</span><span>${a.text}</span></li>`;
       });
 
+      const swl = document.getElementById("software-list");
+      if (SOFTWARE.length) {
+        document.getElementById("software").style.display = "";
+        SOFTWARE.forEach(s => {
+          swl.innerHTML += `
+      <li class="sw-item">
+        <div class="sw-name"><a href="${s.url}" target="_blank"><i class="fab fa-github"></i> ${s.name}</a></div>
+        <div class="sw-desc">${s.desc}</div>
+      </li>`;
+        });
+      }
+
       const sl = document.getElementById("skill-list");
       SKILLS.forEach(s => {
         sl.innerHTML += `
@@ -852,6 +940,7 @@
         <a href="#publications">Publications</a>
         <a href="#education">Education</a>
         <a href="#awards">Awards</a>
+        <a href="#software">Software</a>
         <a href="#skills">Technical Skills</a>
         <a href="#service">Service</a>
         <a href="life.html" style="margin-top:8px; font-size:12px;">· · · Beyond Research →</a>
@@ -871,7 +960,7 @@
 
       <section id="publications">
         <h2>Publications &amp; Preprints</h2>
-        <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">† co-first author</p>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">† co-first author &nbsp;·&nbsp; * lead computational author</p>
         <ul class="pub-list" id="pub-list"></ul>
         <div class="pub-sub" id="ms-head" style="display:none;">Manuscripts under review / revision</div>
         <ul class="pub-list" id="ms-list"></ul>
@@ -894,6 +983,11 @@
       <section id="awards">
         <h2>Selected Awards</h2>
         <ul class="aw-list" id="award-list"></ul>
+      </section>
+
+      <section id="software" style="display:none;">
+        <h2>Software</h2>
+        <ul class="sw-list" id="software-list"></ul>
       </section>
 
       <section id="skills">
